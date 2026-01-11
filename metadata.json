@@ -1,0 +1,5 @@
+{
+  "name": "The Code Pattern Miner",
+  "description": "A sovereign protocol for Context Engineering. Mines, validates, and catalogs code patterns from repositories, transforming raw text into a structured verified component library using AST navigation and Semantic AI.",
+  "requestFramePermissions": []
+}

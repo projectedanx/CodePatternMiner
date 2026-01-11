@@ -1,11 +1,81 @@
-<div align="center">
+# The Code Pattern Miner // SCOS-v5.0
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+> **Operationalizing Context Engineering.**  
+> *Treating code not as text, but as a structured database of logic.*
 
-  <h1>Built with AI Studio</h2>
+![Version](https://img.shields.io/badge/SCOS-v5.0-neon_cyan)
+![Status](https://img.shields.io/badge/System-SOVEREIGN-signal_green)
+![Tech](https://img.shields.io/badge/Stack-React_D3_Gemini-void)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 0. Teleology (The "Why")
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+Traditional coding assistants are "vibe coders"—probabilistic text generators that guess syntax. **The Code Pattern Miner** is a **Context Engineering Protocol**.
 
-</div>
+It leverages the complementary strengths of:
+1.  **Deterministic Static Analysis**: Precise AST (Abstract Syntax Tree) parsing for structure.
+2.  **Probabilistic Semantic AI**: Google Gemini models for meaning, rating, and documentation.
+
+The goal is to move from "generating code from scratch" to "mining and assembling verified logic components" (The Verified Lego Set).
+
+## 1. Core Architecture
+
+The system operates on three primary layers:
+
+### Layer 1: The Neural Scout (Ingestion)
+*   **Manual Injection**: Users input raw code; the system extracts reusable patterns.
+*   **Neural Mining**: Users query a topic (e.g., "Redux Authentication"); the AI hallucinates/retrieves "Platonic Ideal" implementations from its training set.
+
+### Layer 2: The Sovereign Filter (Validation)
+*   **Cyclomatic Complexity Analysis**: Scores logic density (1-10).
+*   **Sovereign Rating**: Classifies code as `STABLE`, `VOLATILE`, or `CRITICAL`.
+*   **AST Topology**: Visualizes the shape of logic using D3.js force-directed trees.
+
+### Layer 3: The Component Catalog (Storage)
+*   **Semantic Linking**: Descriptions and docs automatically hyperlink to other known patterns in the library.
+*   **Context Injection**: Export verified patterns directly into active development workflows.
+
+## 2. Tech Stack
+
+*   **Frontend**: React 19 (ESM), Tailwind CSS
+*   **Visualization**: D3.js (Interactive AST Navigation)
+*   **Intelligence**: Google Gemini 1.5/2.0 Flash & Pro (via `@google/genai`)
+*   **Styling**: Lucide React + Custom "Void/Neon" Aesthetic
+
+## 3. Installation & Boot Sequence
+
+1.  **Clone the Repository**:
+    ```bash
+    git clone https://github.com/your-org/code-pattern-miner.git
+    ```
+
+2.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment**:
+    Create a `.env` file in the root.
+    ```env
+    API_KEY=your_google_gemini_api_key
+    ```
+
+4.  **Initiate Kernel**:
+    ```bash
+    npm start
+    ```
+
+## 4. Operation Guide
+
+### The Mining Dashboard
+*   **Manual Mode**: Paste a messy file. The system dissects it into Functions, Classes, and Hooks.
+*   **Scout Mode**: Ask for "High performance debounce utility". The system generates 3 variations.
+
+### The Catalog
+*   **Filter**: Sort by Confidence, Type, or Sovereign Rating.
+*   **Inspect**: Click any card to open the "Context Slide-over".
+*   **Visualize**: Use the interactive AST map to understand the branching logic before you read the code.
+
+---
+
+**Architected by SCOS-KERNEL-v5.0 // Strategos**
+*Metabolizing entropy into sovereign execution.*
