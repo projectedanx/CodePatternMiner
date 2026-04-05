@@ -4,10 +4,22 @@ import { PatternCard, PatternLinkRenderer } from './PatternCard';
 import { ASTVisualizer } from './ASTVisualizer';
 import { X, Copy, Tag, Code2, FileText, Share2, Filter, Activity, Search } from 'lucide-react';
 
+/**
+ * Properties required by the PatternCatalog component.
+ *
+ * @property {CodePattern[]} patterns - The full collection of mined code patterns available for display.
+ */
 interface PatternCatalogProps {
   patterns: CodePattern[];
 }
 
+/**
+ * The component library interface that displays all successfully mined patterns.
+ * Supports advanced filtering, search, and detailed inspection of individual patterns via a slide-over panel.
+ *
+ * @param {PatternCatalogProps} props - The configuration props for the catalog view.
+ * @returns {React.ReactElement} The rendered catalog interface.
+ */
 export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
   const [selected, setSelected] = useState<CodePattern | null>(null);
   const [filter, setFilter] = useState<PatternType | 'ALL'>('ALL');

@@ -79,3 +79,25 @@ The system operates on three primary layers:
 
 **Architected by SCOS-KERNEL-v5.0 // Strategos**
 *Metabolizing entropy into sovereign execution.*
+
+## 5. Development & Contribution
+
+### Available Scripts
+
+In the project directory, you can run:
+
+*   **`npm run dev`**: Runs the app in development mode using Vite. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+*   **`npm run build`**: Builds the app for production to the `dist` folder.
+*   **`npm run preview`**: Locally preview the production build.
+
+### Documentation Standard
+
+We mandate strict documentation standards for the SCOS-v5.0 Kernel. All exported interfaces, functions, and components must feature comprehensive JSDoc annotations detailing their purpose, arguments, return values, and potential exceptions.
+
+### Troubleshooting Setup
+
+If you encounter issues during the setup phase:
+
+1.  **Missing API Key**: Ensure `.env` contains `API_KEY=your_key` exactly. If the key is invalid, the `scoutPatterns` neural generation will fail silently or log an access error in the console.
+2.  **Node Version**: We recommend Node.js v18+.
+3.  **Dependency Conflicts**: Run `rm -rf node_modules package-lock.json && npm install` if local module resolutions fail.
