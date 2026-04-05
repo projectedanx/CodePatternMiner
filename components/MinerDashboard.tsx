@@ -3,7 +3,14 @@ import { analyzeCodeBlock, scoutPatterns } from '../services/geminiService';
 import { CodePattern } from '../types';
 import { Play, Loader, FileCode, CheckCircle2, Radar, Terminal } from 'lucide-react';
 
+/**
+ * Properties required by the MinerDashboard component.
+ *
+ * @property {(patterns: CodePattern[]) => void} onPatternsFound - Callback triggered when the mining process successfully identifies new patterns.
+ * @property {() => void} onSwitchToCatalog - Callback triggered to switch the application view to the Component Catalog.
+ */
 interface MinerDashboardProps {
+
   onPatternsFound: (patterns: CodePattern[]) => void;
   onSwitchToCatalog: () => void;
 }
@@ -23,6 +30,13 @@ function calculateEntropy(data: number[]): number {
 
 type MiningMode = 'MANUAL' | 'SCOUT';
 
+/**
+ * The main interface for ingesting code and extracting semantic patterns.
+ * Supports both manual code injection and AI-driven scout mode for pattern generation.
+ *
+ * @param {MinerDashboardProps} props - The configuration props for the Miner Dashboard.
+ * @returns {React.ReactElement} The rendered dashboard interface.
+ */
 export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound, onSwitchToCatalog }) => {
   const [mode, setMode] = useState<MiningMode>('MANUAL');
   const [code, setCode] = useState(DEFAULT_CODE);

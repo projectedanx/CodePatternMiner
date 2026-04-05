@@ -3,7 +3,12 @@ import { CodePattern, PatternType } from "../types";
 
 const API_KEY = process.env.API_KEY || '';
 
-// Initialize client securely
+/**
+ * Initializes and retrieves a GoogleGenAI client securely.
+ *
+ * @returns {GoogleGenAI} An instance of the Google Gemini AI client.
+ * @throws {Error} If the API_KEY environment variable is missing.
+ */
 const getClient = () => {
   if (!API_KEY) {
     throw new Error("API Key not found in environment");
@@ -50,6 +55,14 @@ const PATTERN_SCHEMA = {
   }
 };
 
+/**
+ * Analyzes a raw code block using the Gemini AI model to extract distinct, reusable patterns.
+ * Identifies functions, classes, hooks, or components and provides detailed metadata such as AST structure, complexity, and a sovereign rating.
+ *
+ * @param {string} code - The raw source code to be statically analyzed and semantically understood.
+ * @returns {Promise<CodePattern[]>} A promise that resolves to an array of identified and enriched code patterns.
+ * @throws {Error} If the AI generation request fails or parsing errors occur.
+ */
 export const analyzeCodeBlock = async (code: string): Promise<CodePattern[]> => {
   const ai = getClient();
   
@@ -96,6 +109,14 @@ export const analyzeCodeBlock = async (code: string): Promise<CodePattern[]> => 
   }
 };
 
+/**
+ * Acts as a Neural Scout to synthesize or retrieve production-ready code patterns related to a specific topic.
+ * Uses the Gemini AI model to construct high-quality logic components tailored to the query.
+ *
+ * @param {string} topic - The domain, subject, or exact implementation concept to scout patterns for (e.g., "Redux Authentication").
+ * @returns {Promise<CodePattern[]>} A promise that resolves to an array of generated code patterns, varied in complexity.
+ * @throws {Error} If the scout protocol execution or AI generation process fails.
+ */
 export const scoutPatterns = async (topic: string): Promise<CodePattern[]> => {
   const ai = getClient();
   
@@ -140,6 +161,12 @@ export const scoutPatterns = async (topic: string): Promise<CodePattern[]> => {
   }
 };
 
+/**
+ * Generates semantic search tags based on a provided coding query to assist with indexing and retrieval.
+ *
+ * @param {string} query - The search string or coding problem for which semantic tags are needed.
+ * @returns {Promise<string[]>} A promise that resolves to an array of 5 semantic tags related to the input query.
+ */
 export const generateSearchQuery = async (query: string): Promise<string[]> => {
     const ai = getClient();
     const response = await ai.models.generateContent({

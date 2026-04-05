@@ -2,18 +2,39 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { ASTNode } from '../types';
 
+/**
+ * Properties for configuring the AST visualizer component.
+ *
+ * @property {ASTNode} data - The root node of the Abstract Syntax Tree to visualize.
+ * @property {number} [width=600] - The pixel width of the SVG canvas.
+ * @property {number} [height=400] - The pixel height of the SVG canvas.
+ */
 interface ASTVisualizerProps {
   data: ASTNode;
   width?: number;
   height?: number;
 }
 
+/**
+ * Internal state structure for tracking the currently hovered AST node tooltip.
+ *
+ * @property {number} x - The absolute X coordinate for the tooltip.
+ * @property {number} y - The absolute Y coordinate for the tooltip.
+ * @property {ASTNode} data - The underlying AST node data associated with the hovered element.
+ */
 interface HoverState {
   x: number;
   y: number;
   data: ASTNode;
 }
 
+/**
+ * Renders an interactive D3.js force-directed tree diagram representing the code's Abstract Syntax Tree (AST).
+ * Includes zoom, pan, and hover tooltip capabilities.
+ *
+ * @param {ASTVisualizerProps} props - The configuration props for the visualizer.
+ * @returns {React.ReactElement} The SVG container rendering the interactive D3 visual.
+ */
 export const ASTVisualizer: React.FC<ASTVisualizerProps> = ({ data, width = 600, height = 400 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredNode, setHoveredNode] = useState<HoverState | null>(null);

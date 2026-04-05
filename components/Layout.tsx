@@ -1,12 +1,28 @@
 import React from 'react';
 import { Hexagon } from 'lucide-react';
 
+/**
+ * Defines the configuration for a navigation item in the sidebar.
+ *
+ * @property {string} id - The unique identifier corresponding to the application view.
+ * @property {string} label - The display text for the navigation item.
+ * @property {React.ReactNode} icon - The visual icon element to render alongside the label.
+ */
 interface NavItem {
   id: string;
   label: string;
   icon: React.ReactNode;
 }
 
+/**
+ * Properties for configuring the main application layout shell.
+ *
+ * @property {React.ReactNode} children - The main view content to be rendered within the layout.
+ * @property {string} currentView - The ID of the currently active view/route.
+ * @property {(id: string) => void} onNavigate - Callback triggered when a sidebar navigation item is selected.
+ * @property {NavItem[]} navItems - An array of navigation configuration items for the sidebar.
+ * @property {{ patternCount: number }} stats - High-level system statistics displayed in the sidebar footer.
+ */
 interface LayoutProps {
   children: React.ReactNode;
   currentView: string;
@@ -15,6 +31,13 @@ interface LayoutProps {
   stats: { patternCount: number };
 }
 
+/**
+ * The global structural shell of the application.
+ * Manages the persistent sidebar, top navigation bar, and provides the framing for dynamic main content.
+ *
+ * @param {LayoutProps} props - The configuration props for the Layout.
+ * @returns {React.ReactElement} The rendered structural application wrapper.
+ */
 export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate, navItems, stats }) => {
   return (
     <div className="flex h-screen bg-void text-gray-300 font-sans selection:bg-neon-cyan/20 selection:text-neon-cyan overflow-hidden">

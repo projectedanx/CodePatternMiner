@@ -2,6 +2,14 @@ import React from 'react';
 import { CodePattern } from '../types';
 import { Box, Layers, Activity, ShieldCheck, ShieldAlert, Zap, Cpu, Tag, FileText } from 'lucide-react';
 
+/**
+ * Properties required by the PatternCard component.
+ *
+ * @property {CodePattern} pattern - The main pattern data object to display.
+ * @property {(pattern: CodePattern) => void} onClick - Callback fired when the card is clicked, passing the pattern.
+ * @property {string[]} [knownPatternNames] - An optional array of known pattern names for linking within descriptions.
+ * @property {(name: string) => void} [onLinkClick] - Optional callback fired when a recognized pattern name link is clicked.
+ */
 interface PatternCardProps {
   pattern: CodePattern;
   onClick: (pattern: CodePattern) => void;
@@ -9,7 +17,17 @@ interface PatternCardProps {
   onLinkClick?: (name: string) => void;
 }
 
-// Utility component to render text with clickable pattern links
+/**
+ * Utility component that scans a block of text for known pattern names
+ * and transforms them into interactive, clickable links.
+ *
+ * @param {Object} props - The component properties.
+ * @param {string} props.text - The raw description or document string to be parsed.
+ * @param {string[]} props.names - An array of pattern names that should be transformed into links.
+ * @param {(name: string) => void} [props.onLinkClick] - Callback triggered when a highlighted pattern link is clicked.
+ * @param {string} [props.className] - Optional CSS classes to apply to the wrapping element.
+ * @returns {React.ReactElement} The text string with matched names rendered as interactive span elements.
+ */
 export const PatternLinkRenderer: React.FC<{
   text: string;
   names: string[];
@@ -54,6 +72,13 @@ export const PatternLinkRenderer: React.FC<{
   );
 };
 
+/**
+ * A UI card component representing a single mined CodePattern.
+ * Displays pattern metadata, semantic tags, sovereign rating, complexity, and origin.
+ *
+ * @param {PatternCardProps} props - The configuration props for rendering the card.
+ * @returns {React.ReactElement} The visual card representing the code pattern.
+ */
 export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, knownPatternNames = [], onLinkClick }) => {
   const getSovereignColor = (rating: string) => {
     switch (rating) {

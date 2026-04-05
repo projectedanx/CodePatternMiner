@@ -5,11 +5,20 @@ import { PatternCatalog } from './components/PatternCatalog';
 import { CodePattern } from './types';
 import { Database, Search, Cpu } from 'lucide-react';
 
+/**
+ * Represents the primary routing states within the application.
+ */
 enum View {
   MINER = 'MINER',
   CATALOG = 'CATALOG',
 }
 
+/**
+ * The root component of the application.
+ * Manages global application state (like the catalog of mined patterns) and handles the primary view routing between the Miner and the Catalog.
+ *
+ * @returns {React.ReactElement} The main rendered application tree.
+ */
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>(View.MINER);
   const [patterns, setPatterns] = useState<CodePattern[]>([]);
