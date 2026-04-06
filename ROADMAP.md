@@ -32,3 +32,6 @@
 
 ---
 *Future is not inherited. It is architected.*
+
+## Algorithmic Reparations
+- [x] Refactored `PatternCatalog.tsx` to reduce cognitive complexity by extracting `PatternDetailPanel.tsx` and updated to use semantic color tokens.

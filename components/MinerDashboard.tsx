@@ -99,16 +99,16 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
         
         {/* Header & Tabs */}
         <div className="flex justify-between items-center">
-          <div className="flex items-center bg-void-light border border-white/10 rounded-lg p-1">
+          <div className="flex items-center bg-surface-light border border-border-subtle rounded-lg p-1">
              <button 
                onClick={() => setMode('MANUAL')}
-               className={`px-4 py-2 rounded text-xs font-mono font-bold flex items-center gap-2 transition-all ${mode === 'MANUAL' ? 'bg-white/10 text-white shadow-sm' : 'text-gray-500 hover:text-gray-300'}`}
+               className={`px-4 py-2 rounded text-xs font-mono font-bold flex items-center gap-2 transition-all ${mode === 'MANUAL' ? 'bg-primary/10 text-primary shadow-sm' : 'text-tertiary hover:text-secondary'}`}
              >
                <FileCode size={14} /> MANUAL INJECTION
              </button>
              <button 
                onClick={() => setMode('SCOUT')}
-               className={`px-4 py-2 rounded text-xs font-mono font-bold flex items-center gap-2 transition-all ${mode === 'SCOUT' ? 'bg-neon-cyan/20 text-neon-cyan shadow-[0_0_10px_rgba(6,182,212,0.2)]' : 'text-gray-500 hover:text-gray-300'}`}
+               className={`px-4 py-2 rounded text-xs font-mono font-bold flex items-center gap-2 transition-all ${mode === 'SCOUT' ? 'bg-neon-cyan/20 text-neon-cyan shadow-[0_0_10px_rgba(6,182,212,0.2)]' : 'text-tertiary hover:text-secondary'}`}
              >
                <Radar size={14} /> NEURAL SCOUT
              </button>
@@ -120,8 +120,8 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
             className={`
               flex items-center gap-2 px-6 py-2 rounded font-mono text-sm font-bold tracking-wider transition-all
               ${isMining 
-                ? 'bg-void-light text-gray-500 cursor-not-allowed border border-white/5' 
-                : 'bg-neon-cyan text-black hover:bg-white hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]'
+                ? 'bg-surface-light text-tertiary cursor-not-allowed border border-border-subtle'
+                : 'bg-neon-cyan text-black hover:bg-primary hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]'
               }
             `}
           >
@@ -138,12 +138,12 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
             <textarea
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-full h-full bg-void-light border border-white/10 rounded-lg p-6 font-mono text-sm text-gray-300 resize-none focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/50 relative z-10 shadow-inner"
+              className="w-full h-full bg-surface-light border border-border-subtle rounded-lg p-6 font-mono text-sm text-secondary resize-none focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/50 relative z-10 shadow-inner"
               spellCheck={false}
               placeholder="// Paste raw source code here..."
             />
           ) : (
-            <div className="w-full h-full bg-void-light border border-white/10 rounded-lg flex flex-col items-center justify-center relative z-10 p-12">
+            <div className="w-full h-full bg-surface-light border border-border-subtle rounded-lg flex flex-col items-center justify-center relative z-10 p-12">
                <div className="w-full max-w-lg">
                   <label className="text-neon-cyan text-xs font-mono font-bold tracking-widest mb-4 block flex items-center gap-2">
                     <Terminal size={14} />
@@ -155,19 +155,19 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleMine()}
                     placeholder='e.g. "React Authentication Hook with JWT"'
-                    className="w-full bg-black/50 border border-white/20 rounded p-4 text-white font-mono text-lg focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_30px_rgba(6,182,212,0.2)] placeholder:text-gray-700 transition-all"
+                    className="w-full bg-surface-light border border-border-subtle rounded p-4 text-primary font-mono text-lg focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_30px_rgba(6,182,212,0.2)] placeholder:text-gray-700 transition-all"
                   />
                   <div className="mt-6 grid grid-cols-2 gap-3">
-                     <div className="p-3 border border-white/5 rounded bg-white/5">
-                        <div className="text-[10px] text-gray-500 font-mono mb-1">TARGET SOURCE</div>
-                        <div className="text-xs text-gray-300">Latent Open Source</div>
+                     <div className="p-3 border border-border-subtle rounded bg-primary/5">
+                        <div className="text-[10px] text-tertiary font-mono mb-1">TARGET SOURCE</div>
+                        <div className="text-xs text-secondary">Latent Open Source</div>
                      </div>
-                     <div className="p-3 border border-white/5 rounded bg-white/5">
-                        <div className="text-[10px] text-gray-500 font-mono mb-1">VARIATIONS</div>
-                        <div className="text-xs text-gray-300">3 Distinct Patterns</div>
+                     <div className="p-3 border border-border-subtle rounded bg-primary/5">
+                        <div className="text-[10px] text-tertiary font-mono mb-1">VARIATIONS</div>
+                        <div className="text-xs text-secondary">3 Distinct Patterns</div>
                      </div>
                   </div>
-                  <p className="mt-8 text-center text-xs text-gray-600 font-mono">
+                  <p className="mt-8 text-center text-xs text-tertiary font-mono">
                     The Neural Scout will synthesize optimal implementations based on the collective intelligence of the training set.
                   </p>
                </div>
@@ -178,13 +178,13 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
 
       {/* Console / Status Area */}
       <div className="w-80 flex flex-col gap-4">
-        <div className="glass-panel p-4 rounded-lg flex-1 flex flex-col border border-white/10">
-          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
+        <div className="glass-panel p-4 rounded-lg flex-1 flex flex-col border border-border-subtle">
+          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-border-subtle">
             <div className={`w-2 h-2 rounded-full animate-pulse ${mode === 'MANUAL' ? 'bg-signal-green' : 'bg-neon-cyan'}`}></div>
-            <span className="text-xs font-mono font-bold text-white uppercase">Operations Log</span>
+            <span className="text-xs font-mono font-bold text-primary uppercase">Operations Log</span>
           </div>
           
-          <div className="flex-1 overflow-y-auto font-mono text-[10px] space-y-2 text-gray-400">
+          <div className="flex-1 overflow-y-auto font-mono text-[10px] space-y-2 text-secondary">
              {logs.length === 0 && <span className="opacity-50 italic">System Idle. Awaiting input.</span>}
              {logs.map((log, i) => (
                <div key={i} className="animate-in fade-in slide-in-from-left-2 duration-300">
@@ -202,7 +202,7 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
           {logs.includes("Patterns cataloged successfully.") && (
              <button 
                onClick={onSwitchToCatalog}
-               className="mt-4 w-full py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-mono rounded flex items-center justify-center gap-2 transition-colors"
+               className="mt-4 w-full py-2 bg-primary/5 hover:bg-primary/10 border border-border-subtle text-primary text-xs font-mono rounded flex items-center justify-center gap-2 transition-colors"
              >
                <CheckCircle2 size={12} className="text-signal-green" />
                VIEW CATALOG
@@ -210,19 +210,19 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
           )}
         </div>
 
-        <div className="glass-panel p-4 rounded-lg h-1/3 border border-white/10">
-           <h3 className="text-xs font-bold text-gray-500 font-mono mb-3 uppercase">Miner Configuration</h3>
+        <div className="glass-panel p-4 rounded-lg h-1/3 border border-border-subtle">
+           <h3 className="text-xs font-bold text-tertiary font-mono mb-3 uppercase">Miner Configuration</h3>
            <div className="space-y-3">
              <div className="flex justify-between items-center text-xs">
-               <span className="text-gray-400">Heuristic Engine</span>
+               <span className="text-secondary">Heuristic Engine</span>
                <span className="text-neon-cyan font-mono">GEMINI-3-FLASH</span>
              </div>
              <div className="flex justify-between items-center text-xs">
-               <span className="text-gray-400">Protocol Mode</span>
+               <span className="text-secondary">Protocol Mode</span>
                <span className={`font-mono ${mode === 'MANUAL' ? 'text-neon-purple' : 'text-neon-cyan'}`}>{mode}</span>
              </div>
              <div className="flex justify-between items-center text-xs">
-               <span className="text-gray-400">Sovereign Check</span>
+               <span className="text-secondary">Sovereign Check</span>
                <span className="text-signal-green font-mono">ENABLED</span>
              </div>
            </div>
