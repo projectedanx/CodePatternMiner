@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { CodePattern } from '../types';
 import { Box, Layers, Activity, ShieldCheck, ShieldAlert, Zap, Cpu, Tag, FileText } from 'lucide-react';
 
@@ -18,6 +18,14 @@ interface PatternCardProps {
 }
 
 /**
+ * Escape special regex characters to ensure literal matching.
+ *
+ * @param {string} string - The string to escape.
+ * @returns {string} The escaped string.
+ */
+const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
  * Utility component that scans a block of text for known pattern names
  * and transforms them into interactive, clickable links.
  *
@@ -34,19 +42,24 @@ export const PatternLinkRenderer: React.FC<{
   onLinkClick?: (name: string) => void;
   className?: string;
 }> = ({ text, names, onLinkClick, className }) => {
+  // Memoize the regex compilation and text splitting to avoid expensive operations on every render.
+  // The dependencies ensure we only re-calculate if the text content or the list of names changes.
+  // We call useMemo at the top level to comply with the Rules of Hooks.
+  const parts = useMemo(() => {
+    if (!names || names.length === 0 || !onLinkClick) {
+      return [text];
+    }
+    // Create regex pattern matching any of the known names (word boundaries enforced)
+    // Sort by length descending to match longest names first (e.g., "UserAuth" before "User")
+    const sortedNames = [...names].sort((a, b) => b.length - a.length);
+    const pattern = new RegExp(`\\b(${sortedNames.map(escapeRegExp).join('|')})\\b`, 'g');
+
+    return text.split(pattern);
+  }, [text, names, onLinkClick]);
+
   if (!names || names.length === 0 || !onLinkClick) {
     return <span className={className}>{text}</span>;
   }
-
-  // Escape special regex characters
-  const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  
-  // Create regex pattern matching any of the known names (word boundaries enforced)
-  // Sort by length descending to match longest names first (e.g., "UserAuth" before "User")
-  const sortedNames = [...names].sort((a, b) => b.length - a.length);
-  const pattern = new RegExp(`\\b(${sortedNames.map(escapeRegExp).join('|')})\\b`, 'g');
-
-  const parts = text.split(pattern);
 
   return (
     <span className={className}>
