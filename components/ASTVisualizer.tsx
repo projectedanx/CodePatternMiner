@@ -167,29 +167,29 @@ export const ASTVisualizer: React.FC<ASTVisualizerProps> = ({ data, width = 600,
   }, [data, width, height]);
 
   return (
-    <div className="relative border border-white/10 rounded-lg bg-void-light overflow-hidden group">
-      <div className="absolute top-2 left-2 text-xs font-mono text-white/40 pointer-events-none z-10">
+    <div className="relative border border-border-subtle rounded-lg bg-surface-light overflow-hidden group">
+      <div className="absolute top-2 left-2 text-xs font-mono text-primary/40 pointer-events-none z-10">
         AST VISUALIZATION // {data.type}
       </div>
       
       {/* Floating HUD Tooltip */}
       {hoveredNode && !isZooming && (
          <div 
-            className="absolute z-20 px-3 py-2 bg-void/95 border border-neon-cyan/30 rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.2)] backdrop-blur-md pointer-events-none transition-all duration-75 ease-out transform -translate-x-1/2 -translate-y-[140%]"
+            className="absolute z-20 px-3 py-2 bg-surface/95 border border-neon-cyan/30 rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.2)] backdrop-blur-md pointer-events-none transition-all duration-75 ease-out transform -translate-x-1/2 -translate-y-[140%]"
             style={{ left: hoveredNode.x, top: hoveredNode.y }}
          >
-           <div className="flex items-center gap-2 mb-1 border-b border-white/10 pb-1">
+           <div className="flex items-center gap-2 mb-1 border-b border-border-subtle pb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse"></span>
               <span className="text-[10px] font-mono font-bold text-neon-cyan uppercase tracking-wider">{hoveredNode.data.type}</span>
            </div>
-           <div className="text-xs text-white font-bold font-sans whitespace-nowrap">{hoveredNode.data.name}</div>
+           <div className="text-xs text-primary font-bold font-sans whitespace-nowrap">{hoveredNode.data.name}</div>
            {hoveredNode.data.value && (
-             <div className="text-[10px] text-gray-400 font-mono mt-1 border-t border-dashed border-white/10 pt-1">
+             <div className="text-[10px] text-secondary font-mono mt-1 border-t border-dashed border-border-subtle pt-1">
                val: <span className="text-signal-green">{hoveredNode.data.value}</span>
              </div>
            )}
            {/* Tooltip Arrow */}
-           <div className="absolute left-1/2 -bottom-1 w-2 h-2 bg-void/95 border-r border-b border-neon-cyan/30 transform rotate-45 -translate-x-1/2"></div>
+           <div className="absolute left-1/2 -bottom-1 w-2 h-2 bg-surface/95 border-r border-b border-neon-cyan/30 transform rotate-45 -translate-x-1/2"></div>
          </div>
       )}
       
