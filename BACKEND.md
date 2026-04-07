@@ -68,28 +68,10 @@ interface PatternDocument {
 }
 ```
 
-## 4. Security Rules (Firestore)
+## 4. Security Rules (Firestore - Zero Trust Enforced)
 
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    
-    // User Profiles: Public read, Owner write
-    match /users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth.uid == userId;
-    }
+See `firestore.rules` for the implemented policies enforcing workspace isolation and authenticated access.
 
-    // Patterns: Read if in workspace, Write if owner
-    match /patterns/{patternId} {
-      allow read: if resource.data.authorId == request.auth.uid 
-                  || request.auth.uid in resource.data.collaborators;
-      allow write: if request.auth.uid != null;
-    }
-  }
-}
-```
 
 ## 5. Cloud Functions (Server-Side Logic)
 
