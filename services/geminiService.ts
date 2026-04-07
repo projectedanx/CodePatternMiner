@@ -57,6 +57,15 @@ const PATTERN_SCHEMA = {
 
 
 /**
+ * Represents the raw code pattern data returned by the Gemini AI model.
+ * It lacks the client-specific identifier and origin tracking.
+ */
+interface RawPattern extends Omit<CodePattern, 'id' | 'origin' | 'type'> {
+  /** The raw string representation of the PatternType. */
+  type: string;
+}
+
+/**
  * Parses raw JSON text from Gemini and enriches each pattern with a UUID, type casting, and an origin.
  *
  * @param {string} text - The raw JSON string returned by the AI model.
@@ -64,8 +73,8 @@ const PATTERN_SCHEMA = {
  * @returns {CodePattern[]} An array of enriched code patterns.
  */
 const parseAndEnrichPatterns = (text: string, origin: 'USER_INPUT' | 'NEURAL_MINE'): CodePattern[] => {
-  const rawPatterns = JSON.parse(text);
-  return rawPatterns.map((p: any) => ({
+  const rawPatterns = JSON.parse(text) as RawPattern[];
+  return rawPatterns.map((p: RawPattern) => ({
     ...p,
     id: crypto.randomUUID(),
     type: p.type as PatternType,
