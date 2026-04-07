@@ -55,8 +55,27 @@ const PATTERN_SCHEMA = {
   }
 };
 
+
+/**
+ * Parses raw JSON text from Gemini and enriches each pattern with a UUID, type casting, and an origin.
+ *
+ * @param {string} text - The raw JSON string returned by the AI model.
+ * @param {'USER_INPUT' | 'NEURAL_MINE'} origin - The origin context of the patterns.
+ * @returns {CodePattern[]} An array of enriched code patterns.
+ */
+const parseAndEnrichPatterns = (text: string, origin: 'USER_INPUT' | 'NEURAL_MINE'): CodePattern[] => {
+  const rawPatterns = JSON.parse(text);
+  return rawPatterns.map((p: any) => ({
+    ...p,
+    id: crypto.randomUUID(),
+    type: p.type as PatternType,
+    origin
+  }));
+};
+
 /**
  * Analyzes a raw code block using the Gemini AI model to extract distinct, reusable patterns.
+
  * Identifies functions, classes, hooks, or components and provides detailed metadata such as AST structure, complexity, and a sovereign rating.
  *
  * @param {string} code - The raw source code to be statically analyzed and semantically understood.
@@ -93,14 +112,7 @@ export const analyzeCodeBlock = async (code: string): Promise<CodePattern[]> => 
     });
 
     if (response.text) {
-      const rawPatterns = JSON.parse(response.text);
-      // Enrich with client-side IDs
-      return rawPatterns.map((p: any) => ({
-        ...p,
-        id: crypto.randomUUID(),
-        type: p.type as PatternType,
-        origin: 'USER_INPUT'
-      }));
+      return parseAndEnrichPatterns(response.text, 'USER_INPUT');
     }
     return [];
   } catch (error) {
@@ -146,13 +158,7 @@ export const scoutPatterns = async (topic: string): Promise<CodePattern[]> => {
     });
 
     if (response.text) {
-      const rawPatterns = JSON.parse(response.text);
-      return rawPatterns.map((p: any) => ({
-        ...p,
-        id: crypto.randomUUID(),
-        type: p.type as PatternType,
-        origin: 'NEURAL_MINE'
-      }));
+      return parseAndEnrichPatterns(response.text, 'NEURAL_MINE');
     }
     return [];
   } catch (error) {
