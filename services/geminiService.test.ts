@@ -185,3 +185,65 @@ describe('geminiService - analyzeCodeBlock', () => {
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
+
+describe('geminiService - generateSearchQuery', () => {
+  const originalEnv = process.env;
+
+  beforeEach(() => {
+    vi.resetModules();
+    process.env = { ...originalEnv, API_KEY: 'test-api-key' };
+
+    // Mock crypto.randomUUID
+    Object.defineProperty(globalThis, 'crypto', {
+      value: {
+        randomUUID: () => '1234-5678-9012-3456'
+      },
+      configurable: true
+    });
+  });
+
+  afterEach(() => {
+    process.env = originalEnv;
+    vi.clearAllMocks();
+  });
+
+  it('should generate semantic search tags successfully', async () => {
+    const mockResponseText = JSON.stringify(['tag1', 'tag2', 'tag3']);
+
+    mockGenerateContent.mockResolvedValueOnce({
+      text: mockResponseText
+    });
+
+    const query = 'How to use React hooks';
+    const { generateSearchQuery } = await import('./geminiService');
+    const result = await generateSearchQuery(query);
+
+    expect(mockGenerateContent).toHaveBeenCalledTimes(1);
+    expect(mockGenerateContent.mock.calls[0][0].contents).toContain(`Generate 5 semantic search tags for the coding query: "${query}"`);
+    expect(result).toEqual(['tag1', 'tag2', 'tag3']);
+  });
+
+  it('should return an empty array if response text is missing', async () => {
+    mockGenerateContent.mockResolvedValueOnce({});
+
+    const { generateSearchQuery } = await import('./geminiService');
+    const result = await generateSearchQuery('How to use React hooks');
+
+    expect(result).toEqual([]);
+  });
+
+  it('should throw an error if the generation fails', async () => {
+    const error = new Error('API Error');
+    mockGenerateContent.mockRejectedValueOnce(error);
+
+    const { generateSearchQuery } = await import('./geminiService');
+    await expect(generateSearchQuery('How to use React hooks')).rejects.toThrow('API Error');
+  });
+
+  it('should throw an error if the API_KEY is missing', async () => {
+    vi.stubEnv('API_KEY', '');
+    const importedModule = await import('./geminiService');
+    await expect(importedModule.generateSearchQuery('How to use React hooks')).rejects.toThrow('API Key not found in environment');
+    expect(mockGenerateContent).not.toHaveBeenCalled();
+  });
+});
