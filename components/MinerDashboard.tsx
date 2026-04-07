@@ -21,9 +21,9 @@ function calculateEntropy(data: number[]): number {
   if (data.length === 0) return 0;
   
   const sum = data.reduce((acc, val) => acc + val, 0);
-  const probabilities = data.map(val => val / sum);
   
-  return -probabilities.reduce((acc, p) => {
+  return -data.reduce((acc, val) => {
+    const p = val / sum;
     return p === 0 ? acc : acc + p * Math.log2(p);
   }, 0);
 }`;
