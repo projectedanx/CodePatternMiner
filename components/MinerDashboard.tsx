@@ -77,8 +77,8 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
         finalizeMining(foundPatterns);
       }
       
-    } catch (err: any) {
-      setError("Mining Protocol Failed: " + (err.message || "Unknown Error"));
+    } catch (err: unknown) {
+      setError("Mining Protocol Failed: " + (err instanceof Error ? err.message : "Unknown Error"));
       addLog("CRITICAL FAILURE in mining sequence.");
     } finally {
       setIsMining(false);
