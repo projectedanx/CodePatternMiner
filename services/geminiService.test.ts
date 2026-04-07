@@ -105,3 +105,33 @@ describe('geminiService - scoutPatterns', () => {
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
+
+describe('geminiService - analyzeCodeBlock', () => {
+  const originalEnv = process.env;
+
+  beforeEach(() => {
+    vi.resetModules();
+    process.env = { ...originalEnv, API_KEY: 'test-api-key' };
+
+    // Mock crypto.randomUUID
+    Object.defineProperty(globalThis, 'crypto', {
+      value: {
+        randomUUID: () => '1234-5678-9012-3456'
+      },
+      configurable: true
+    });
+  });
+
+  afterEach(() => {
+    process.env = originalEnv;
+    vi.clearAllMocks();
+  });
+
+  it('should throw an error if the generation fails', async () => {
+    const error = new Error('API Error');
+    mockGenerateContent.mockRejectedValueOnce(error);
+
+    const { analyzeCodeBlock } = await import('./geminiService');
+    await expect(analyzeCodeBlock('function test() {}')).rejects.toThrow('API Error');
+  });
+});
