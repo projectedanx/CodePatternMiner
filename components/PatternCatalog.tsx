@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { CodePattern, PatternType } from '../types';
 import { PatternCard } from './PatternCard';
 import { PatternDetailPanel } from './PatternDetailPanel';
@@ -21,6 +21,8 @@ interface PatternCatalogProps {
  * @param {PatternCatalogProps} props - The configuration props for the catalog view.
  * @returns {React.ReactElement} The rendered catalog interface.
  */
+const filters = ['ALL', ...Object.values(PatternType)];
+
 export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
   const [selected, setSelected] = useState<CodePattern | null>(null);
   const [filter, setFilter] = useState<PatternType | 'ALL'>('ALL');
@@ -33,10 +35,10 @@ export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
     (searchTerm === '' || p.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const filters = ['ALL', ...Object.values(PatternType)];
+
   
   // Registry of all pattern names for auto-linking
-  const allPatternNames = patterns.map(p => p.name);
+  const allPatternNames = useMemo(() => patterns.map(p => p.name), [patterns]);
 
   const handleLinkClick = (name: string) => {
     // 1. Set the search term to filter the grid
