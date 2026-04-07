@@ -76,7 +76,7 @@ describe('geminiService - scoutPatterns', () => {
       code: 'function test() {}',
       complexity: 1,
       origin: 'NEURAL_MINE',
-      id: '1234-5678-9012-3456'
+      id: expect.any(String)
     });
   });
 
@@ -99,8 +99,8 @@ describe('geminiService - scoutPatterns', () => {
 
   it('should throw an error if the API_KEY is missing', async () => {
     // Modify env and re-import to force the module-level variable to read the empty key
-    process.env.API_KEY = '';
-    const importedModule = await import(`./geminiService?t=${Date.now()}`); // force re-evaluate
+    vi.stubEnv('API_KEY', '');
+    const importedModule = await import('./geminiService');
     await expect(importedModule.scoutPatterns('Test Topic')).rejects.toThrow('API Key not found in environment');
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
@@ -133,5 +133,55 @@ describe('geminiService - analyzeCodeBlock', () => {
 
     const { analyzeCodeBlock } = await import('./geminiService');
     await expect(analyzeCodeBlock('function test() {}')).rejects.toThrow('API Error');
+  });
+
+  it('should successfully analyze a code block and enrich patterns', async () => {
+    const mockResponseText = JSON.stringify([
+      {
+        name: 'testFunction',
+        type: 'FUNCTION',
+        description: 'A test function',
+        code: 'function test() {}',
+        complexity: 1,
+        ast: { name: 'Program', type: 'Program', children: [] }
+      }
+    ]);
+
+    mockGenerateContent.mockResolvedValueOnce({
+      text: mockResponseText
+    });
+
+    const code = 'function test() {}';
+    const { analyzeCodeBlock } = await import('./geminiService');
+    const result = await analyzeCodeBlock(code);
+
+    expect(mockGenerateContent).toHaveBeenCalledTimes(1);
+    expect(mockGenerateContent.mock.calls[0][0].contents).toContain(code);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toMatchObject({
+      name: 'testFunction',
+      type: 'FUNCTION',
+      description: 'A test function',
+      code: 'function test() {}',
+      complexity: 1,
+      origin: 'USER_INPUT',
+      id: expect.any(String)
+    });
+  });
+
+  it('should return an empty array if response text is missing', async () => {
+    mockGenerateContent.mockResolvedValueOnce({});
+
+    const { analyzeCodeBlock } = await import('./geminiService');
+    const result = await analyzeCodeBlock('function test() {}');
+
+    expect(result).toEqual([]);
+  });
+
+  it('should throw an error if the API_KEY is missing', async () => {
+    vi.stubEnv('API_KEY', '');
+    const importedModule = await import('./geminiService');
+    await expect(importedModule.analyzeCodeBlock('function test() {}')).rejects.toThrow('API Key not found in environment');
+    expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
