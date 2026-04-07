@@ -94,7 +94,7 @@ export const ASTVisualizer: React.FC<ASTVisualizerProps> = ({ data, width = 600,
       .attr("fill", "none")
       .attr("stroke", "#3f3f46")
       .attr("stroke-width", 1.5)
-      .attr("d", d3.linkHorizontal<any, any>()
+      .attr("d", d3.linkHorizontal<d3.HierarchyPointLink<ASTNode>, d3.HierarchyPointNode<ASTNode>>()
         .x(d => d.y)
         .y(d => d.x)
       );
