@@ -143,14 +143,6 @@ export const ASTVisualizer: React.FC<ASTVisualizerProps> = ({ data, width = 600,
           .attr("filter", null);
         
         setHoveredNode(null);
-      })
-      .on("click", function(event, d) {
-        console.log("AST Node Details:", {
-          type: d.data.type,
-          name: d.data.name,
-          children: d.data.children,
-          raw: d.data
-        });
       });
 
     // Labels
