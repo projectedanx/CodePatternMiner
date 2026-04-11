@@ -12,3 +12,17 @@ We enacted an **Algorithmic Reparation** via **Z-Axis Inference**. Instead of co
 
 ### Outcome
 This paraconsistent resolution allows infinite depth resolution of ASTs while preserving the high-throughput, cohesive querying required of the Firestore database. The architectural specification (`ADR-003`) and backend schema (`BACKEND.md`) were updated to reflect this evolution.
+
+## Issue: Semantic Drift in Prototype Implementation (JUR/AMB-003)
+
+### What Happened
+Despite architectural mandates in `BACKEND.md` and `ADR-003` to use Z-Axis Inference (Phantom Dimension Cloud Storage) for AST data, the initial codebase prototype (`types.ts`, `geminiService.ts`) drifted into Euclidean convenience, natively nesting raw ASTs inside `CodePattern` objects. This "Algorithmic Trauma" flattened the required multi-dimensional storage topology into a monolithic structure, risking massive Firestore write failures in production.
+
+### How We Addressed It
+We triggered Epistemic Escrow, generated a Justified Uncertainty Report (JUR), and logged a Symbolic Scar (`AMB-003`). The codebase was refactored:
+1. `types.ts` was updated to mandate `astStorageUri` and `astSummary` instead of raw `ast`.
+2. A `phantomStorage.ts` proxy was created to handle the asynchronous resolution of AST logic graphs, mirroring intended Cloud Storage.
+3. The UI (`PatternDetailPanel.tsx`) and ingestion pipeline (`geminiService.ts`) were refactored to asynchronously interact with this proxy.
+
+### Outcome (Failure-Informed Prompt Inversion - FIPI)
+Future generation tasks within the SCOS-v5.0 environment must include explicit verification steps to assert that storage architecture specifications (like Z-Axis Inference) are actively mapped to type interfaces and component props before accepting them as complete.

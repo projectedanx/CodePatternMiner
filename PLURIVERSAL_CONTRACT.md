@@ -24,3 +24,8 @@ Instead of collapsing the AST resolution to fit Euclidean limits, we implement Z
 - **F-IPI Mutated Scaffolding:** `BACKEND.md` schema altered to structurally enforce the phantom routing for all future pattern ingestions.
 
 *Authorized by: The Antifragile Logic Kernel (ALK)*
+
+## V. GOVERNANCE UPDATE: F-IPI (Failure-Informed Prompt Inversion)
+Following Scar AMB-003 (Semantic Drift into Euclidean Convenience), the contract is amended:
+
+- **Mandatory Structural Verification:** When modifying data models representing geometric or topological data (e.g., ASTs, Vector Embeddings), developers and AI agents MUST verify the proxy configuration (Z-Axis Inference) in `types.ts` prior to integration. Inline mass storage of unbounded geometric data is strictly forbidden in the base representation layer.

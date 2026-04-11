@@ -27,8 +27,17 @@ export interface ASTNode {
 }
 
 /**
+ * Represents a summary of the AST topology.
+ * Kept lightweight to fit within Firestore document limits.
+ */
+export interface ASTSummary {
+  nodeCount: number;
+  maxDepth: number;
+}
+
+/**
  * Represents a fully mined and analyzed code block with its metadata.
- * It contains the source code, analysis scores, and its AST structure.
+ * It contains the source code, analysis scores, and its AST structure metadata.
  *
  * @property {string} id - A unique identifier for the mined pattern.
  * @property {string} name - A descriptive name for the pattern.
@@ -37,7 +46,8 @@ export interface ASTNode {
  * @property {string} code - The raw source code of the pattern.
  * @property {number} complexity - A cyclomatic complexity score (typically 1-10).
  * @property {string[]} tags - Semantic tags associated with the pattern for searching.
- * @property {ASTNode} ast - The simplified AST representation of the code.
+ * @property {string} astStorageUri - Pointer to the full AST JSON blob in the Phantom Dimension (Storage).
+ * @property {ASTSummary} astSummary - Lightweight topological summary of the AST.
  * @property {number} confidence - The AI's confidence score in the pattern's validity (0-1).
  * @property {string} sovereignRating - A classification indicating stability (e.g., 'STABLE', 'VOLATILE', 'CRITICAL').
  * @property {string} usageDocs - Documentation explaining how to use the pattern.
@@ -51,7 +61,8 @@ export interface CodePattern {
   code: string;
   complexity: number; // 1-10
   tags: string[];
-  ast: ASTNode;
+  astStorageUri: string;
+  astSummary: ASTSummary;
   confidence: number;
   sovereignRating: string; // "STABLE", "VOLATILE", "CRITICAL"
   usageDocs: string;
