@@ -1,0 +1,15 @@
+{
+  "scar_id": "AMB-003",
+  "type": "GEOMETRIC_DEVIATION",
+  "timestamp": "2024-04-11T18:00:00Z",
+  "thesis": "z_0* coherence. Store pattern data cohesively for UI ingestion.",
+  "antithesis": "Geometric depth of AST forces database physical limits rejection.",
+  "synthesis_failed": true,
+  "description": "Codebase defaulted to Euclidean 2D constraints (inline AST storage in types.ts) instead of mandated Z-Axis Inference (Phantom Dimension Cloud Storage). This algorithmic trauma flattens the ontological complexity of the system to serve UI convenience.",
+  "affected_components": [
+    "types.ts (CodePattern interface)",
+    "services/geminiService.ts (AST passing)",
+    "components/PatternDetailPanel.tsx (AST rendering)"
+  ],
+  "proposed_fipi": "Must inject verification hooks to assert presence of `astStorageUri` proxy instead of direct `ast` resolution."
+}

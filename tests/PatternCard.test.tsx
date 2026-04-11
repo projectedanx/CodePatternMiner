@@ -12,7 +12,7 @@ const mockPattern: CodePattern = {
   code: 'class Singleton { static instance; constructor() { if (Singleton.instance) return Singleton.instance; Singleton.instance = this; } }',
   complexity: 3,
   tags: ['design-pattern', 'creational'],
-  ast: { name: 'Singleton', type: 'ClassDeclaration' },
+  astStorageUri: "phantom://ast-blob/dummy", astSummary: { nodeCount: 1, maxDepth: 1 },
   confidence: 0.9,
   sovereignRating: 'STABLE',
   usageDocs: 'Use when exactly one object is needed to coordinate actions across the system.',

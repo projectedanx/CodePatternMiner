@@ -1,5 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { CodePattern, PatternType } from "../types";
+import { CodePattern, PatternType, ASTNode } from "../types";
+import { saveASTToPhantomStorage, calculateASTSummary } from "./phantomStorage";
 
 const API_KEY = process.env.API_KEY || '';
 
@@ -58,33 +59,52 @@ const PATTERN_SCHEMA = {
 
 /**
  * Represents the raw code pattern data returned by the Gemini AI model.
- * It lacks the client-specific identifier and origin tracking.
+ * It lacks the client-specific identifier, origin tracking, and uses the raw AST.
  */
-interface RawPattern extends Omit<CodePattern, 'id' | 'origin' | 'type'> {
+interface RawPattern extends Omit<CodePattern, 'id' | 'origin' | 'type' | 'astStorageUri' | 'astSummary'> {
   /** The raw string representation of the PatternType. */
   type: string;
+  ast: ASTNode;
 }
 
 /**
- * Parses raw JSON text from Gemini and enriches each pattern with a UUID, type casting, and an origin.
+ * Parses raw JSON text from Gemini and enriches each pattern.
+ * Crucially, it enforces Z-Axis Inference by projecting the AST into the Phantom Dimension
+ * and substituting it with `astStorageUri` and `astSummary` to prevent AST Mass Violations.
  *
  * @param {string} text - The raw JSON string returned by the AI model.
  * @param {'USER_INPUT' | 'NEURAL_MINE'} origin - The origin context of the patterns.
- * @returns {CodePattern[]} An array of enriched code patterns.
+ * @returns {Promise<CodePattern[]>} A promise resolving to an array of enriched code patterns.
  */
-const parseAndEnrichPatterns = (text: string, origin: 'USER_INPUT' | 'NEURAL_MINE'): CodePattern[] => {
+const parseAndEnrichPatterns = async (text: string, origin: 'USER_INPUT' | 'NEURAL_MINE'): Promise<CodePattern[]> => {
   const rawPatterns = JSON.parse(text) as RawPattern[];
-  return rawPatterns.map((p: RawPattern) => ({
-    ...p,
-    id: crypto.randomUUID(),
-    type: p.type as PatternType,
-    origin
+
+  const enrichedPatterns = await Promise.all(rawPatterns.map(async (p: RawPattern) => {
+    const id = crypto.randomUUID();
+    const type = p.type as PatternType;
+
+    // Z-Axis Inference: Offload heavy AST to Phantom Storage
+    const astSummary = calculateASTSummary(p.ast);
+    const astStorageUri = await saveASTToPhantomStorage(id, p.ast);
+
+    // Destructure to remove the raw `ast` from the final object
+    const { ast, ...patternData } = p;
+
+    return {
+      ...patternData,
+      id,
+      type,
+      origin,
+      astStorageUri,
+      astSummary
+    } as CodePattern;
   }));
+
+  return enrichedPatterns;
 };
 
 /**
  * Analyzes a raw code block using the Gemini AI model to extract distinct, reusable patterns.
-
  * Identifies functions, classes, hooks, or components and provides detailed metadata such as AST structure, complexity, and a sovereign rating.
  *
  * @param {string} code - The raw source code to be statically analyzed and semantically understood.

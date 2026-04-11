@@ -1,8 +1,9 @@
-import React from 'react';
-import { CodePattern } from '../types';
+import React, { useEffect, useState } from 'react';
+import { CodePattern, ASTNode } from '../types';
 import { PatternLinkRenderer } from './PatternCard';
 import { ASTVisualizer } from './ASTVisualizer';
-import { X, Copy, Tag, Code2, FileText, Share2 } from 'lucide-react';
+import { fetchASTFromPhantomStorage } from '../services/phantomStorage';
+import { X, Copy, Tag, Code2, FileText, Share2, Loader2 } from 'lucide-react';
 
 interface PatternDetailPanelProps {
   selected: CodePattern | null;
@@ -17,6 +18,23 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
   allPatternNames,
   onLinkClick
 }) => {
+  const [ast, setAst] = useState<ASTNode | null>(null);
+  const [isLoadingAST, setIsLoadingAST] = useState<boolean>(false);
+  const [astError, setAstError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selected?.astStorageUri) {
+      setIsLoadingAST(true);
+      setAstError(null);
+      fetchASTFromPhantomStorage(selected.astStorageUri)
+        .then(resolvedAst => setAst(resolvedAst))
+        .catch(err => setAstError(err.message))
+        .finally(() => setIsLoadingAST(false));
+    } else {
+      setAst(null);
+    }
+  }, [selected?.astStorageUri]);
+
   if (!selected) return null;
 
   return (
@@ -66,11 +84,35 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
 
          {/* AST Viz */}
          <section>
-            <div className="flex items-center gap-2 mb-3 text-neon-purple">
-               <Share2 size={16} />
-               <h3 className="text-sm font-bold font-mono uppercase tracking-wider">Logic Topology (AST)</h3>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2 text-neon-purple">
+                 <Share2 size={16} />
+                 <h3 className="text-sm font-bold font-mono uppercase tracking-wider">Logic Topology (AST)</h3>
+              </div>
+              {selected.astSummary && (
+                <div className="text-[10px] font-mono text-secondary flex gap-3">
+                  <span>Nodes: <span className="text-primary">{selected.astSummary.nodeCount}</span></span>
+                  <span>Depth: <span className="text-primary">{selected.astSummary.maxDepth}</span></span>
+                </div>
+              )}
             </div>
-            <ASTVisualizer data={selected.ast} width={550} height={300} />
+
+            <div className="relative min-h-[300px] border border-border-subtle rounded-lg bg-surface-light overflow-hidden flex items-center justify-center">
+              {isLoadingAST && (
+                <div className="flex flex-col items-center gap-3 text-secondary">
+                  <Loader2 size={24} className="animate-spin text-neon-purple" />
+                  <span className="text-xs font-mono tracking-widest uppercase">Fetching Phantom Data...</span>
+                </div>
+              )}
+              {astError && (
+                <div className="text-red-400 text-xs font-mono bg-red-900/20 p-4 border border-red-900/50 rounded max-w-[80%] text-center">
+                  Error resolving Z-Axis Inference: {astError}
+                </div>
+              )}
+              {ast && !isLoadingAST && (
+                <ASTVisualizer data={ast} width={550} height={300} />
+              )}
+            </div>
          </section>
 
          {/* Code Block */}
