@@ -58,7 +58,8 @@ interface PatternDocument {
   usageDocs: string;
   
   // Analysis Data
-  astData: Map<string, any>; // Stored as JSON object
+  astStorageUri: string; // Phantom Dimension (Firebase Storage)
+  astSummary: Map<string, any>; // Lightweight structural topology
   
   // Vector Embeddings (For Semantic Search)
   embedding: number[]; // 768-dim vector from Gemini

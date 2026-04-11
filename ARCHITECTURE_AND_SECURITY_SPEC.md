@@ -295,6 +295,23 @@ architecture_decisions:
       data_impact: "No intermediate 'processing' state in Firestore needed for this specific path."
       security_impact: "Callable function automatically handles auth context."
       diagram_impact: "Direct RPC call from client to Cloud Function."
+
+  - id: ADR-003
+    title: "Z-Axis Inference for AST Storage"
+    status: "DECIDED"
+    context: "AST topological data depth can theoretically exceed Firestore 1MB limits."
+    options_considered:
+      - option: "Truncate AST depth to fit in Firestore"
+        pros: ["Maintains simple querying within z_0* parameters"]
+        cons: ["Loss of topological fidelity", "Violates β1 novelty targets"]
+      - option: "Phantom Dimension Routing (Firebase Storage)"
+        pros: ["Infinite depth resolution", "Resolves NLI contradiction"]
+        cons: ["Requires two-step resolution for UI rendering"]
+    decision: "Phantom Dimension Routing (Firebase Storage)"
+    rationale: "Maximizes Topological Novelty while retaining a structural summary in Firestore for querying."
+    consequences:
+      api_impact: "Clients must fetch full AST via Storage URI."
+      data_impact: "Schema shift from `astData` to `astStorageUri` and `astSummary`."
   - id: ADR-002
     title: "Vector Search Implementation"
     status: "DECIDED"
