@@ -26,3 +26,18 @@ We triggered Epistemic Escrow, generated a Justified Uncertainty Report (JUR), a
 
 ### Outcome (Failure-Informed Prompt Inversion - FIPI)
 Future generation tasks within the SCOS-v5.0 environment must include explicit verification steps to assert that storage architecture specifications (like Z-Axis Inference) are actively mapped to type interfaces and component props before accepting them as complete.
+
+## Issue: Pluriversal Enablement - Breaking the Monolithic Intelligence Coupling
+
+### What Happened
+During the implementation of Phase 2 (Pluriversal Layer), it was observed that the application's core domains (`MinerDashboard`, `mcp_server.ts`) were tightly coupled to `services/geminiService.ts`. This monolithic dependency violated Domain-Driven Design principles, restricting cognitive diversity and creating a single point of failure by locking the system to a single LLM vendor (Google Gemini).
+
+### How We Addressed It
+We enacted an **Architectural Restructuring** by introducing the **Intelligence Gateway Pattern** combined with a strict **Provider Strategy**:
+1.  **Anti-Corruption Layer (ACL)**: Created `IntelligenceGateway.ts` to orchestrate intelligence requests.
+2.  **Provider Contract**: Defined `IntelligenceProvider.ts` to standardize analysis and scouting operations.
+3.  **Concrete Implementation**: Refactored the raw Gemini logic into `providers/GeminiProvider.ts`.
+4.  **UI/Server Decoupling**: Updated `MinerDashboard` and `mcp_server.ts` to rely solely on the Gateway, allowing dynamic model selection.
+
+### Outcome
+This decoupling ensures the system can seamlessly route requests to alternative intelligence providers (e.g., Claude 3.5, DeepSeek R1) in the future without altering core logic or UI components. The architectural specification (`ADR-004`) was authored to document this Topological Causal Sculpting.

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { analyzeCodeBlock, scoutPatterns } from '../services/geminiService';
+import { intelligenceGateway } from '../services/intelligence/IntelligenceGateway';
 import { CodePattern } from '../types';
 import { Play, Loader, FileCode, CheckCircle2, Radar, Terminal } from 'lucide-react';
 
@@ -44,6 +44,7 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
   const [isMining, setIsMining] = useState(false);
   const [logs, setLogs] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [provider, setProvider] = useState<string>('GEMINI_3_FLASH');
 
   const addLog = (msg: string) => setLogs(prev => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
 
@@ -67,13 +68,13 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
         
         addLog("Engaging Gemini Neural Engine for Semantic Verification...");
         
-        const foundPatterns = await analyzeCodeBlock(code);
+        const foundPatterns = await intelligenceGateway.analyzeCodeBlock(code, provider);
         finalizeMining(foundPatterns);
       } else {
         addLog("Initializing Neural Scout Protocol...");
         addLog(`Broadcasting vector: "${searchQuery}" to latent space...`);
         
-        const foundPatterns = await scoutPatterns(searchQuery);
+        const foundPatterns = await intelligenceGateway.scoutPatterns(searchQuery, provider);
         finalizeMining(foundPatterns);
       }
       
@@ -215,7 +216,15 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
            <div className="space-y-3">
              <div className="flex justify-between items-center text-xs">
                <span className="text-secondary">Heuristic Engine</span>
-               <span className="text-neon-cyan font-mono">GEMINI-3-FLASH</span>
+               <select
+                 value={provider}
+                 onChange={(e) => setProvider(e.target.value)}
+                 className="bg-surface-light border border-border-subtle text-neon-cyan font-mono text-xs rounded p-1 outline-none"
+               >
+                 {intelligenceGateway.getAvailableProviders().map(p => (
+                   <option key={p} value={p}>{p}</option>
+                 ))}
+               </select>
              </div>
              <div className="flex justify-between items-center text-xs">
                <span className="text-secondary">Protocol Mode</span>

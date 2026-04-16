@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { analyzeCodeBlock, scoutPatterns } from "./geminiService";
+import { intelligenceGateway } from "./intelligence/IntelligenceGateway";
 import express from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
@@ -84,7 +84,7 @@ server.registerTool(
   },
   async ({ code }) => {
     try {
-      const patterns = await analyzeCodeBlock(code);
+      const patterns = await intelligenceGateway.analyzeCodeBlock(code);
       return {
         content: [{ type: "text", text: JSON.stringify(patterns, null, 2) }],
       };
@@ -125,7 +125,7 @@ server.registerTool(
   },
   async ({ topic }) => {
     try {
-      const patterns = await scoutPatterns(topic);
+      const patterns = await intelligenceGateway.scoutPatterns(topic);
       return {
         content: [{ type: "text", text: JSON.stringify(patterns, null, 2) }],
       };
