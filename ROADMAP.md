@@ -31,6 +31,7 @@
 - [ ] **Dependency Graphing**: Visualize how patterns import/export each other.
 
 - [x] **Sovereign Agent Blueprint**: Deployed 'Kut' (Retention Architect) manifest via docs/KUT_BLUEPRINT.md
+- [x] **Sovereign Agent Blueprint**: Deployed 'Axiom' (Documentation Architect) manifest via docs/AXIOM_BLUEPRINT.md
 ---
 *Future is not inherited. It is architected.*
 
