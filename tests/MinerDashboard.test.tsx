@@ -2,11 +2,14 @@ import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MinerDashboard } from '../components/MinerDashboard';
-import { analyzeCodeBlock, scoutPatterns } from '../services/geminiService';
+import { intelligenceGateway } from '../services/intelligence/IntelligenceGateway';
 
-vi.mock('../services/geminiService', () => ({
-  analyzeCodeBlock: vi.fn(),
-  scoutPatterns: vi.fn(),
+vi.mock('../services/intelligence/IntelligenceGateway', () => ({
+  intelligenceGateway: {
+    analyzeCodeBlock: vi.fn(),
+    scoutPatterns: vi.fn(),
+    getAvailableProviders: vi.fn(() => ['GEMINI_3_FLASH'])
+  }
 }));
 
 describe('MinerDashboard', () => {
@@ -19,7 +22,7 @@ describe('MinerDashboard', () => {
 
   it('displays an error when manual mining fails', async () => {
     const mockError = new Error('Manual extraction failed');
-    (analyzeCodeBlock as any).mockRejectedValueOnce(mockError);
+    (intelligenceGateway.analyzeCodeBlock as any).mockRejectedValueOnce(mockError);
 
     render(<MinerDashboard onPatternsFound={onPatternsFound} onSwitchToCatalog={onSwitchToCatalog} />);
 
@@ -36,7 +39,7 @@ describe('MinerDashboard', () => {
 
   it('displays an error when scout mining fails', async () => {
     const mockError = new Error('Scout protocol offline');
-    (scoutPatterns as any).mockRejectedValueOnce(mockError);
+    (intelligenceGateway.scoutPatterns as any).mockRejectedValueOnce(mockError);
 
     render(<MinerDashboard onPatternsFound={onPatternsFound} onSwitchToCatalog={onSwitchToCatalog} />);
 

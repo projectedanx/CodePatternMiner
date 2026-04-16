@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import * as geminiService from './geminiService';
 
 // Define a mock generateContent function so we can change its implementation per test
 const mockGenerateContent = vi.fn();
@@ -22,7 +21,7 @@ vi.mock('@google/genai', () => {
   };
 });
 
-describe('geminiService - scoutPatterns', () => {
+describe('IntelligenceGateway - scoutPatterns', () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
@@ -63,8 +62,8 @@ describe('geminiService - scoutPatterns', () => {
     // We need to re-import dynamically if we want the module to see the new env variable
     // but the file initializes API_KEY outside functions.
     // Vitest has vi.stubEnv but we might need to reset module registry to re-evaluate module level vars
-    const { scoutPatterns } = await import('./geminiService');
-    const result = await scoutPatterns(topic);
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.scoutPatterns(topic);
 
     expect(mockGenerateContent).toHaveBeenCalledTimes(1);
     expect(mockGenerateContent.mock.calls[0][0].contents).toContain(`TOPIC: "${topic}"`);
@@ -83,8 +82,8 @@ describe('geminiService - scoutPatterns', () => {
   it('should return an empty array if response text is missing', async () => {
     mockGenerateContent.mockResolvedValueOnce({});
 
-    const { scoutPatterns } = await import('./geminiService');
-    const result = await scoutPatterns('Test Topic');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.scoutPatterns('Test Topic');
 
     expect(result).toEqual([]);
   });
@@ -93,20 +92,20 @@ describe('geminiService - scoutPatterns', () => {
     const error = new Error('API Error');
     mockGenerateContent.mockRejectedValueOnce(error);
 
-    const { scoutPatterns } = await import('./geminiService');
-    await expect(scoutPatterns('Test Topic')).rejects.toThrow('API Error');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    await expect(intelligenceGateway.scoutPatterns('Test Topic')).rejects.toThrow('API Error');
   });
 
   it('should throw an error if the API_KEY is missing', async () => {
     // Modify env and re-import to force the module-level variable to read the empty key
     vi.stubEnv('API_KEY', '');
-    const importedModule = await import('./geminiService');
-    await expect(importedModule.scoutPatterns('Test Topic')).rejects.toThrow('API Key not found in environment');
+    const importedModule = await import('./IntelligenceGateway');
+    await expect(importedModule.intelligenceGateway.scoutPatterns('Test Topic')).rejects.toThrow('API Key not found in environment');
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
 
-describe('geminiService - analyzeCodeBlock', () => {
+describe('IntelligenceGateway - analyzeCodeBlock', () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
@@ -131,8 +130,8 @@ describe('geminiService - analyzeCodeBlock', () => {
     const error = new Error('API Error');
     mockGenerateContent.mockRejectedValueOnce(error);
 
-    const { analyzeCodeBlock } = await import('./geminiService');
-    await expect(analyzeCodeBlock('function test() {}')).rejects.toThrow('API Error');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    await expect(intelligenceGateway.analyzeCodeBlock('function test() {}')).rejects.toThrow('API Error');
   });
 
   it('should successfully analyze a code block and enrich patterns', async () => {
@@ -152,8 +151,8 @@ describe('geminiService - analyzeCodeBlock', () => {
     });
 
     const code = 'function test() {}';
-    const { analyzeCodeBlock } = await import('./geminiService');
-    const result = await analyzeCodeBlock(code);
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.analyzeCodeBlock(code);
 
     expect(mockGenerateContent).toHaveBeenCalledTimes(1);
     expect(mockGenerateContent.mock.calls[0][0].contents).toContain(code);
@@ -172,21 +171,21 @@ describe('geminiService - analyzeCodeBlock', () => {
   it('should return an empty array if response text is missing', async () => {
     mockGenerateContent.mockResolvedValueOnce({});
 
-    const { analyzeCodeBlock } = await import('./geminiService');
-    const result = await analyzeCodeBlock('function test() {}');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.analyzeCodeBlock('function test() {}');
 
     expect(result).toEqual([]);
   });
 
   it('should throw an error if the API_KEY is missing', async () => {
     vi.stubEnv('API_KEY', '');
-    const importedModule = await import('./geminiService');
-    await expect(importedModule.analyzeCodeBlock('function test() {}')).rejects.toThrow('API Key not found in environment');
+    const importedModule = await import('./IntelligenceGateway');
+    await expect(importedModule.intelligenceGateway.analyzeCodeBlock('function test() {}')).rejects.toThrow('API Key not found in environment');
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
 
-describe('geminiService - generateSearchQuery', () => {
+describe('IntelligenceGateway - generateSearchQuery', () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
@@ -215,8 +214,8 @@ describe('geminiService - generateSearchQuery', () => {
     });
 
     const query = 'How to use React hooks';
-    const { generateSearchQuery } = await import('./geminiService');
-    const result = await generateSearchQuery(query);
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.generateSearchQuery(query);
 
     expect(mockGenerateContent).toHaveBeenCalledTimes(1);
     expect(mockGenerateContent.mock.calls[0][0].contents).toContain(`Generate 5 semantic search tags for the coding query: "${query}"`);
@@ -226,8 +225,8 @@ describe('geminiService - generateSearchQuery', () => {
   it('should return an empty array if response text is missing', async () => {
     mockGenerateContent.mockResolvedValueOnce({});
 
-    const { generateSearchQuery } = await import('./geminiService');
-    const result = await generateSearchQuery('How to use React hooks');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    const result = await intelligenceGateway.generateSearchQuery('How to use React hooks');
 
     expect(result).toEqual([]);
   });
@@ -236,14 +235,14 @@ describe('geminiService - generateSearchQuery', () => {
     const error = new Error('API Error');
     mockGenerateContent.mockRejectedValueOnce(error);
 
-    const { generateSearchQuery } = await import('./geminiService');
-    await expect(generateSearchQuery('How to use React hooks')).rejects.toThrow('API Error');
+    const { intelligenceGateway } = await import('./IntelligenceGateway');
+    await expect(intelligenceGateway.generateSearchQuery('How to use React hooks')).rejects.toThrow('API Error');
   });
 
   it('should throw an error if the API_KEY is missing', async () => {
     vi.stubEnv('API_KEY', '');
-    const importedModule = await import('./geminiService');
-    await expect(importedModule.generateSearchQuery('How to use React hooks')).rejects.toThrow('API Key not found in environment');
+    const importedModule = await import('./IntelligenceGateway');
+    await expect(importedModule.intelligenceGateway.generateSearchQuery('How to use React hooks')).rejects.toThrow('API Key not found in environment');
     expect(mockGenerateContent).not.toHaveBeenCalled();
   });
 });
