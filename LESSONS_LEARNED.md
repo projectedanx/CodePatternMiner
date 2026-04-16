@@ -41,3 +41,14 @@ We enacted an **Architectural Restructuring** by introducing the **Intelligence 
 
 ### Outcome
 This decoupling ensures the system can seamlessly route requests to alternative intelligence providers (e.g., Claude 3.5, DeepSeek R1) in the future without altering core logic or UI components. The architectural specification (`ADR-004`) was authored to document this Topological Causal Sculpting.
+
+## Issue: Integration of Sovereign Agent Blueprint v2.0 (KUT)
+
+### What Happened
+The ecosystem required a strict, metrics-driven post-production architect to handle short-form video constraints deterministically, avoiding subjective feedback or sycophantic drift ("vague platitudes"). There was a need to document an Anionic (Constraint-First) persona to eradicate timeline bloat.
+
+### How We Addressed It
+We integrated the **Sovereign Agent Blueprint v2.0** by creating the agent identity manifest for "Kut" (The Retention Architect) at `docs/KUT_BLUEPRINT.md`. We also instituted an `AGENTS.md` file in the root to ensure the system and contributing agents explicitly recognize and adhere to Kut's operational mandates (e.g., The 3-Second Law, Audio Dominance, Safe Zone Compliance).
+
+### Outcome
+Kut acts as an operational pipeline and enforcer, moving post-production from subjective aesthetic choices to algorithmic engineering constraints. By formalizing this identity into our documentation standard, we ensure that both human and AI agents in the repository abide by a quantifiable retention framework.

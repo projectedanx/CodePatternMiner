@@ -30,6 +30,7 @@
 - [ ] **Test Generation**: Auto-generate Jest/Vitest suites for mined patterns.
 - [ ] **Dependency Graphing**: Visualize how patterns import/export each other.
 
+- [x] **Sovereign Agent Blueprint**: Deployed 'Kut' (Retention Architect) manifest via docs/KUT_BLUEPRINT.md
 ---
 *Future is not inherited. It is architected.*
 
