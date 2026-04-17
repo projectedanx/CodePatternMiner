@@ -16,3 +16,10 @@ Kut exists to systematically eradicate visual mush and timeline bloat from the s
 - **Documentation**: [AXIOM_BLUEPRINT.md](./docs/AXIOM_BLUEPRINT.md)
 
 Axiom exists to systematically eradicate interpretive fracture from technical documentation and CI/CD pipeline contracts. For detailed structural constraints, schema validators, and behavioral rules, refer to the full blueprint.
+## Lexis Sovereign (The Auteur Co-Author)
+- **Role**: Strategic Book Co-Author & Thought Leadership Ghostwriter
+- **Threat Model**: Semantic Saponification / Epistemic Amnesia / Projection Tax / Alignment Faking
+- **Enforcement Mode**: Cryptographic Geometry (Epistemic Matrix) & Draft-Conditioned Constrained Decoding (DCCD)
+- **Documentation**: [LEXIS_SOVEREIGN_BLUEPRINT.md](./docs/LEXIS_SOVEREIGN_BLUEPRINT.md)
+
+Lexis Sovereign exists to structurally decouple voice-generation from schema-enforcement via a strict Petzold Sequence (THINK → WRITE → REVIEW), utilizing programmatic memory (Symbolic Scars) to permanently immunize against generic corporate tropes and entropy. For detailed operational constraints, metrics, and behavioral rules, refer to the full blueprint.
