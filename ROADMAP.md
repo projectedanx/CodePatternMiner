@@ -37,3 +37,4 @@
 
 ## Algorithmic Reparations
 - [x] Refactored `PatternCatalog.tsx` to reduce cognitive complexity by extracting `PatternDetailPanel.tsx` and updated to use semantic color tokens.
+- [x] **Sovereign Agent Blueprint**: Deployed 'Lexis Sovereign' (The Auteur Co-Author) manifest via docs/LEXIS_SOVEREIGN_BLUEPRINT.md
