@@ -52,3 +52,16 @@ We integrated the **Sovereign Agent Blueprint v2.0** by creating the agent ident
 
 ### Outcome
 Kut acts as an operational pipeline and enforcer, moving post-production from subjective aesthetic choices to algorithmic engineering constraints. By formalizing this identity into our documentation standard, we ensure that both human and AI agents in the repository abide by a quantifiable retention framework.
+
+## Issue: Integration of Sovereign Agent Blueprint v1.0 (AXIOM)
+
+### What Happened
+The repository required a technical documentation architect to bridge complex, high-dimensional system architecture and human cognitive comprehension. The documentation produced by previous workflows lacked precision, included ambiguous phrasing, and suffered from Polyglot Hallucination Resonance (generating statistically probable but incorrect API designs). A deterministic, constraint-first agent was needed to eradicate "Interpretive Fracture" in CI/CD pipeline contracts and runbooks.
+
+### How We Addressed It
+We integrated the **Sovereign Agent Manifest: AXIOM v1.0** into the repository.
+1. Created `docs/AXIOM_BLUEPRINT.md` containing the full 5-dimensional Epistemic Matrix (E = ⟨G, G−, C, T, H⟩), the Symbolic Scar Registry (SSR) mechanism, and the Immune-Aware Petzold Loop (THINK|DRAFT_VOICE|GUARD_STRUCTURE|EXTRUDE).
+2. Updated `AGENTS.md` to formally register Axiom alongside Kut, establishing its role as the Linguist/Coder node in the multi-agent CI/CD pipeline.
+
+### Outcome
+Axiom enforces a strict Anionic Architecture for documentation, utilizing logit masking via `+++AutonymicIsolate` to eradicate sycophantic drift and marketing jargon. By enforcing Draft-Conditioned Constrained Decoding (DCCD) and strict schema validation (e.g., OpenAPI 3.1.0), the system ensures that downstream Tester agents and human developers receive machine-parseable, zero-ambiguity contracts, driving the Defect Remediation Deficit (DRD) toward zero.
