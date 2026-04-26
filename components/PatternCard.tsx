@@ -72,7 +72,7 @@ export const PatternLinkRenderer: React.FC<{
                 e.stopPropagation();
                 onLinkClick(part);
               }}
-              className="text-neon-cyan hover:text-primary hover:underline cursor-pointer font-mono font-bold mx-0.5"
+              className="text-neon-cyan hover:text-primary hover:underline cursor-pointer font-mono font-bold mx-1"
               title={`Jump to ${part}`}
             >
               {part}
@@ -105,9 +105,9 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
   return (
     <div 
       onClick={() => onClick(pattern)}
-      className="group relative flex flex-col p-5 bg-surface-light border border-border-subtle hover:border-neon-cyan/50 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)]"
+      className="group relative flex flex-col p-6 bg-surface-light border border-border-subtle hover:border-neon-cyan/50 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)]"
     >
-      <div className="flex justify-between items-start mb-3">
+      <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
            {pattern.origin === 'NEURAL_MINE' ? (
               <Zap size={16} className="text-neon-cyan" />
@@ -120,13 +120,13 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
                e.stopPropagation();
                // TODO: Implement usage docs viewer callback
              }}
-             className="text-tertiary hover:text-neon-cyan transition-colors p-0.5"
+             className="text-tertiary hover:text-neon-cyan transition-colors p-1"
              title="View Protocol Manual"
            >
              <FileText size={12} />
            </button>
         </div>
-        <div className={`text-[10px] px-2 py-1 rounded border font-mono tracking-wider flex items-center gap-1 ${getSovereignColor(pattern.sovereignRating)}`}>
+        <div className={`text-xs px-2 py-1 rounded border font-mono tracking-wider flex items-center gap-1 ${getSovereignColor(pattern.sovereignRating)}`}>
             {pattern.sovereignRating === 'STABLE' ? <ShieldCheck size={10} /> : <ShieldAlert size={10} />}
             {pattern.sovereignRating}
         </div>
@@ -141,26 +141,26 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
       </div>
 
       {/* Semantic Tags Display */}
-      <div className="flex flex-wrap gap-1.5 mb-4">
+      <div className="flex flex-wrap gap-2 mb-4">
         {pattern.tags && pattern.tags.slice(0, 3).map((tag) => (
-          <span key={tag} className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary/5 border border-border-subtle text-[10px] text-tertiary font-mono whitespace-nowrap">
+          <span key={tag} className="flex items-center gap-1 px-2 py-1 rounded bg-primary/5 border border-border-subtle text-xs text-tertiary font-mono whitespace-nowrap">
             <Tag size={8} className="opacity-70" /> {tag}
           </span>
         ))}
         {pattern.tags && pattern.tags.length > 3 && (
-           <span className="text-[9px] text-tertiary self-center font-mono">+{pattern.tags.length - 3}</span>
+           <span className="text-xs text-tertiary self-center font-mono">+{pattern.tags.length - 3}</span>
         )}
       </div>
 
-      <div className="mt-auto pt-3 border-t border-border-subtle flex justify-between items-center text-xs text-tertiary font-mono">
+      <div className="mt-auto pt-4 border-t border-border-subtle flex justify-between items-center text-xs text-tertiary font-mono">
         <div className="relative group/tooltip flex items-center gap-2 cursor-help">
           <Activity size={12} className={pattern.complexity > 5 ? 'text-orange-400' : 'text-signal-green'} />
           <span>CX: {pattern.complexity}/10</span>
           
           {/* Complexity Tooltip */}
-          <div className="absolute bottom-full left-0 mb-2 w-48 p-3 bg-surface border border-border-subtle rounded shadow-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none z-20">
-             <div className="text-[10px] font-bold text-primary mb-1 uppercase tracking-wider">Cyclomatic Complexity</div>
-             <div className="text-[10px] text-secondary leading-tight font-sans">
+          <div className="absolute bottom-full left-0 mb-2 w-48 p-4 bg-surface border border-border-subtle rounded shadow-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none z-20">
+             <div className="text-xs font-bold text-primary mb-1 uppercase tracking-wider">Cyclomatic Complexity</div>
+             <div className="text-xs text-secondary leading-tight font-sans">
                 Measures the number of linearly independent paths through the code. Lower scores (1-5) indicate better maintainability.
              </div>
              {/* Arrow */}
@@ -170,7 +170,7 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
         
         <div className="flex items-center gap-2">
           {pattern.origin === 'NEURAL_MINE' && (
-             <span className="text-[10px] text-neon-cyan flex items-center gap-1" title="Neural Scout Origin">
+             <span className="text-xs text-neon-cyan flex items-center gap-1" title="Neural Scout Origin">
                 <Cpu size={10} /> NEURAL
              </span>
           )}

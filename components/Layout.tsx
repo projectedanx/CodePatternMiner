@@ -43,7 +43,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigat
     <div className="flex h-screen bg-surface text-secondary font-sans selection:bg-neon-cyan/20 selection:text-neon-cyan overflow-hidden">
       {/* Sidebar */}
       <aside className="w-64 border-r border-border-subtle bg-surface-light flex flex-col relative z-10">
-        <div className="p-6 border-b border-border-subtle flex items-center gap-3">
+        <div className="p-6 border-b border-border-subtle flex items-center gap-2">
           <div className="relative">
              <Hexagon className="text-neon-cyan fill-neon-cyan/10 animate-pulse" size={28} />
              <div className="absolute inset-0 blur-lg bg-neon-cyan/30 opacity-50"></div>
@@ -59,7 +59,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigat
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-md transition-all duration-200 group relative overflow-hidden ${
+              className={`w-full flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 group relative overflow-hidden ${
                 currentView === item.id 
                   ? 'bg-primary/5 text-neon-cyan border border-neon-cyan/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]'
                   : 'hover:bg-primary/5 hover:text-primary border border-transparent'
@@ -77,7 +77,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigat
         </nav>
 
         <div className="p-6 border-t border-border-subtle">
-           <div className="bg-surface-light rounded p-3 border border-border-subtle">
+           <div className="bg-surface-light rounded p-2 border border-border-subtle">
              <p className="text-[10px] text-tertiary mb-1 font-mono uppercase">System Status</p>
              <div className="flex justify-between items-center mb-2">
                <span className="text-xs text-primary">Context Link</span>
