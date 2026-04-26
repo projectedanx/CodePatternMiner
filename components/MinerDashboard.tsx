@@ -158,12 +158,12 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
                     placeholder='e.g. "React Authentication Hook with JWT"'
                     className="w-full bg-surface-light border border-border-subtle rounded p-4 text-primary font-mono text-lg focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_30px_rgba(6,182,212,0.2)] placeholder:text-gray-700 transition-all"
                   />
-                  <div className="mt-6 grid grid-cols-2 gap-3">
-                     <div className="p-3 border border-border-subtle rounded bg-primary/5">
+                  <div className="mt-6 grid grid-cols-2 gap-2">
+                     <div className="p-2 border border-border-subtle rounded bg-primary/5">
                         <div className="text-[10px] text-tertiary font-mono mb-1">TARGET SOURCE</div>
                         <div className="text-xs text-secondary">Latent Open Source</div>
                      </div>
-                     <div className="p-3 border border-border-subtle rounded bg-primary/5">
+                     <div className="p-2 border border-border-subtle rounded bg-primary/5">
                         <div className="text-[10px] text-tertiary font-mono mb-1">VARIATIONS</div>
                         <div className="text-xs text-secondary">3 Distinct Patterns</div>
                      </div>
@@ -212,7 +212,7 @@ export const MinerDashboard: React.FC<MinerDashboardProps> = ({ onPatternsFound,
         </div>
 
         <div className="glass-panel p-4 rounded-lg h-1/3 border border-border-subtle">
-           <h3 className="text-xs font-bold text-tertiary font-mono mb-3 uppercase">Miner Configuration</h3>
+           <h3 className="text-xs font-bold text-tertiary font-mono mb-2 uppercase">Miner Configuration</h3>
            <div className="space-y-3">
              <div className="flex justify-between items-center text-xs">
                <span className="text-secondary">Heuristic Engine</span>

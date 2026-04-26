@@ -70,7 +70,7 @@ export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
               {searchTerm && (
                 <div className="flex items-center gap-2">
                    <span className="text-xs text-tertiary font-mono">FILTER:</span>
-                   <div className="flex items-center gap-2 px-3 py-1 rounded bg-neon-cyan/20 border border-neon-cyan/50 text-neon-cyan text-xs font-bold font-mono">
+                   <div className="flex items-center gap-2 px-4 py-1 rounded bg-neon-cyan/20 border border-neon-cyan/50 text-neon-cyan text-xs font-bold font-mono">
                       "{searchTerm}"
                       <button onClick={() => setSearchTerm('')} className="hover:text-primary">
                         <X size={12} />
@@ -81,7 +81,7 @@ export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
 
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
-                   <div className="flex items-center gap-2 px-3 py-1.5 rounded bg-primary/5 border border-border-subtle text-xs text-tertiary font-mono mr-2 shrink-0">
+                   <div className="flex items-center gap-2 px-4 py-2 rounded bg-primary/5 border border-border-subtle text-xs text-tertiary font-mono mr-2 shrink-0">
                       <Filter size={12} /> TYPE:
                    </div>
                    {filters.map(f => (
@@ -89,7 +89,7 @@ export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
                        key={f}
                        onClick={() => setFilter(f as PatternType | 'ALL')}
                        className={`
-                         px-3 py-1.5 rounded text-[10px] font-mono font-bold tracking-wider transition-all border
+                         px-4 py-2 rounded text-xs font-mono font-bold tracking-wider transition-all border
                          ${filter === f 
                            ? 'bg-neon-cyan/10 border-neon-cyan text-neon-cyan shadow-[0_0_10px_rgba(6,182,212,0.15)]' 
                            : 'bg-surface-light border-border-subtle text-tertiary hover:border-border-subtle hover:text-secondary'
@@ -102,8 +102,8 @@ export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
                 </div>
 
                 {/* Confidence Slider */}
-                <div className="flex items-center gap-3 px-4 py-2 rounded bg-primary/5 border border-border-subtle w-full md:w-auto">
-                     <div className="flex items-center gap-2 text-[10px] font-mono font-bold text-tertiary uppercase tracking-wider whitespace-nowrap min-w-[120px]">
+                <div className="flex items-center gap-4 px-4 py-2 rounded bg-primary/5 border border-border-subtle w-full md:w-auto">
+                     <div className="flex items-center gap-2 text-xs font-mono font-bold text-tertiary uppercase tracking-wider whitespace-nowrap min-w-[120px]">
                         <Activity size={12} className="text-neon-cyan" />
                         Min Confidence: <span className="text-primary">{minConfidence}%</span>
                      </div>
