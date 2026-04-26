@@ -93,3 +93,16 @@ We enacted the "Aesthetic Geometrician" (Dieter) constraints across the componen
 
 ### Outcome
 The codebase now maintains a rigid spatial architecture. This deterministic UI structure eliminates ad-hoc styling and guarantees cognitive consistency (Fitts's Law, Gestalt Proximity) via an auditable, token-bound approach.
+
+## Issue: Integration of Sovereign Agent Blueprint (VANCE)
+
+### What Happened
+The ecosystem required a deterministic mechanism to bridge human-written source code and the strict reality of the JSON-RPC 2.0 protocol for code intelligence. The naive approach of treating codebases as a sequence of text with symbol metadata attached was fundamentally flawed, leading to asynchronous state desynchronization, scope mereology collapse, and semantic embedding drift.
+
+### How We Addressed It
+We integrated the **Sovereign Agent Blueprint: VANCE** (Vector-Anchored Node & Context Engineer) into the repository.
+1. Created `docs/VANCE_BLUEPRINT.md` containing the full design document, establishing a Conflict-Free Replicated Semantic Graph (CFRSG) core, a Nitinol Failure Ledger (NFL), and a Draft-Conditioned Constrained Decoder (DCCD).
+2. Updated `AGENTS.md` to formally register Vance as the Topological LSP Architect & Semantic Indexer node in the ecosystem.
+
+### Outcome
+Vance operates as a semantic cartographer, calculating exact spatial coordinates within the semantic graph instead of guessing definition locations. By enforcing strict Mereological Bounding and utilizing an incremental Tree-Sitter parse engine, Vance eliminates causal asymmetry and guarantees schema-valid outbound JSON-RPC payloads prior to emission.

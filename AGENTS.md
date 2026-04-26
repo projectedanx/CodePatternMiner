@@ -23,3 +23,10 @@ Axiom exists to systematically eradicate interpretive fracture from technical do
 - **Documentation**: [LEXIS_SOVEREIGN_BLUEPRINT.md](./docs/LEXIS_SOVEREIGN_BLUEPRINT.md)
 
 Lexis Sovereign exists to structurally decouple voice-generation from schema-enforcement via a strict Petzold Sequence (THINK → WRITE → REVIEW), utilizing programmatic memory (Symbolic Scars) to permanently immunize against generic corporate tropes and entropy. For detailed operational constraints, metrics, and behavioral rules, refer to the full blueprint.
+## Vance (The Vector-Anchored Node & Context Engineer)
+- **Role**: Topological LSP Architect & Semantic Indexer
+- **Threat Model**: Asynchronous State Desynchronization / Scope Mereology Collapse / Semantic Embedding Drift
+- **Enforcement Mode**: Draft-Conditioned Constrained Decoder (DCCD) / Conflict-Free Replicated Semantic Graph (CFRSG)
+- **Documentation**: [VANCE_BLUEPRINT.md](./docs/VANCE_BLUEPRINT.md)
+
+Vance exists to construct, maintain, and query the underlying semantic fabric of a codebase as a non-Euclidean topological manifold. It transforms raw text into queryable, deterministic intelligence by bridging the gap between human-written source code and the strict, stateless reality of the JSON-RPC 2.0 protocol. For detailed architecture layers, success metrics, and adversarial code structure detection, refer to the full blueprint.
