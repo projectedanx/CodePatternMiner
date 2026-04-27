@@ -44,3 +44,10 @@ DAX-01 exists to structurally eradicate Semantic Saponification from developer r
 - **Documentation**: [docs/aletheon_evaluations/Vulnerability_and_Debt_Audit.md](./docs/aletheon_evaluations/Vulnerability_and_Debt_Audit.md)
 
 ALETHEON exists to perform adversarial autopsies of software tools and architecture before procurement or integration. It evaluates tools for Epistemic Lock-In (ELIS), Saga Rollback Difficulty (SRDS), and Betti-1 loops, outputting results in structural artifacts to prevent architectural debt and enshittification risk.
+## Next.js Frontend RAG Agent (Server-side AI Agent)
+- **Role**: Reflector + ToolUser (Composite)
+- **Threat Model**: Hallucination Risk / Vector Search Decay / Stale Context
+- **Enforcement Mode**: Retrieval-augmented generation with citation validation
+- **Documentation**: [NEXTJS_FRONTEND_RAG_AGENT_BLUEPRINT.md](./docs/NEXTJS_FRONTEND_RAG_AGENT_BLUEPRINT.md)
+
+The Next.js Frontend RAG Agent exists to provide robust retrieval-augmented generation for Next.js applications, combining Firestore vector search, LLM-based re-ranking, and strict citation generation. It structurally mitigates hallucinations and ensures context-grounded AI synthesis. For detailed schemas, tools, and constraints, refer to the full blueprint.
