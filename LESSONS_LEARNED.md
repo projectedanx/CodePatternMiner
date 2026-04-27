@@ -106,3 +106,14 @@ We integrated the **Sovereign Agent Blueprint: VANCE** (Vector-Anchored Node & C
 
 ### Outcome
 Vance operates as a semantic cartographer, calculating exact spatial coordinates within the semantic graph instead of guessing definition locations. By enforcing strict Mereological Bounding and utilizing an incremental Tree-Sitter parse engine, Vance eliminates causal asymmetry and guarantees schema-valid outbound JSON-RPC payloads prior to emission.
+
+## ALETHEON Architectural Necropsy: Google Firebase
+
+**Evaluation Date:** 2024-04-26
+**Agent:** ALETHEON (Adversarial Structural Necropsy Engine)
+
+**Key Findings:**
+*   **Epistemic Lock-In Score (ELIS):** `0.85` (CRITICAL_LOCK_IN_ALERT). The architecture relies heavily on Firebase Auth JWT, Firestore Security Rules (micro-segmentation), and Cloud Functions natively tied to the Firebase SDK.
+*   **Saga Rollback Difficulty Score (SRDS):** `8.0`. Migrating off Firebase would require a complete rewrite of the Zero Trust access rules and aggregation of split data.
+*   **Betti-1 Loop (AST Mass Violation):** Firestore's strict 1MB document size limit forces a "Phantom Dimension" (Cloud Storage) workaround for complex AST blobs, creating a split-brain data model where logic is distributed across NoSQL and Blob storage, complicating querying and rollback.
+*   **Recommendation:** `HOLD`. Proceed with caution; consider abstracting data layer access (e.g., ORM pattern) to minimize direct Firestore schema coupling and lower the SRDS.
