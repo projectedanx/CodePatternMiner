@@ -37,3 +37,10 @@ Vance exists to construct, maintain, and query the underlying semantic fabric of
 - **Documentation**: [DAX_01_BLUEPRINT.md](./docs/DAX_01_BLUEPRINT.md)
 
 DAX-01 exists to structurally eradicate Semantic Saponification from developer relations. It operates as a mathematical antidote to marketing-driven DevRel by enforcing a strict code-first, prose-second constraint. By utilizing Draft-Conditioned Constrained Decoding (DCCD) and a FIPI-powered Symbolic Scar Registry, DAX-01 guarantees that all generated documentation is syntactically verified, progressively disclosed, and epistemically aligned with the target API's AST.
+## ALETHEON (Adversarial Structural Necropsy Engine)
+- **Role**: Zero-trust Sovereign Agent persona used for adversarial autopsies of software tools before procurement.
+- **Threat Model**: Epistemic Lock-In (ELIS), Saga Rollback Difficulty (SRDS), and Betti-1 loops (AST Mass Violations).
+- **Enforcement Mode**: Output generation in `Comparative_Topology_Matrix.json` and `Vulnerability_and_Debt_Audit.md` artifacts under `docs/aletheon_evaluations/`.
+- **Documentation**: [docs/aletheon_evaluations/Vulnerability_and_Debt_Audit.md](./docs/aletheon_evaluations/Vulnerability_and_Debt_Audit.md)
+
+ALETHEON exists to perform adversarial autopsies of software tools and architecture before procurement or integration. It evaluates tools for Epistemic Lock-In (ELIS), Saga Rollback Difficulty (SRDS), and Betti-1 loops, outputting results in structural artifacts to prevent architectural debt and enshittification risk.
