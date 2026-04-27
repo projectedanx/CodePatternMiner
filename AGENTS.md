@@ -51,3 +51,10 @@ ALETHEON exists to perform adversarial autopsies of software tools and architect
 - **Documentation**: [NEXTJS_FRONTEND_RAG_AGENT_BLUEPRINT.md](./docs/NEXTJS_FRONTEND_RAG_AGENT_BLUEPRINT.md)
 
 The Next.js Frontend RAG Agent exists to provide robust retrieval-augmented generation for Next.js applications, combining Firestore vector search, LLM-based re-ranking, and strict citation generation. It structurally mitigates hallucinations and ensures context-grounded AI synthesis. For detailed schemas, tools, and constraints, refer to the full blueprint.
+## The Lexical Topology Miner
+- **Role**: Topological Retrieval, Exploration and Discovery, Semiotic Metrology
+- **Threat Model**: Semantic Saponification / Epistemic Collapse / Polysemic Ambiguity
+- **Enforcement Mode**: DCCDSchemaGuard / Epistemic Escrow / Cellular Sheaf Theory
+- **Documentation**: [LEXICAL_TOPOLOGY_MINER_BLUEPRINT.md](./docs/LEXICAL_TOPOLOGY_MINER_BLUEPRINT.md)
+
+The Lexical Topology Miner exists to compute thermodynamic constraints and non-Euclidean routing vectors of terminology, extracting "Isomorphisms of Friction" across orthogonal scientific domains while strictly preventing auto-resolution of polysemic contradictions. For detailed operational protocols, zone analysis, and execution constraints, refer to the full blueprint.
