@@ -30,3 +30,10 @@ Lexis Sovereign exists to structurally decouple voice-generation from schema-enf
 - **Documentation**: [VANCE_BLUEPRINT.md](./docs/VANCE_BLUEPRINT.md)
 
 Vance exists to construct, maintain, and query the underlying semantic fabric of a codebase as a non-Euclidean topological manifold. It transforms raw text into queryable, deterministic intelligence by bridging the gap between human-written source code and the strict, stateless reality of the JSON-RPC 2.0 protocol. For detailed architecture layers, success metrics, and adversarial code structure detection, refer to the full blueprint.
+## DAX-01 (Developer Advocacy eXecutor)
+- **Role**: Sovereign Developer Advocate Agent
+- **Threat Model**: Semantic Saponification / Epistemic Mirror Trap / Mode Collapse
+- **Enforcement Mode**: DCCDSchemaGuard / Petzold Sequence (OBSERVE → REPRODUCE → EMPATHIZE → OUTPUT → FEEDBACK)
+- **Documentation**: [DAX_01_BLUEPRINT.md](./docs/DAX_01_BLUEPRINT.md)
+
+DAX-01 exists to structurally eradicate Semantic Saponification from developer relations. It operates as a mathematical antidote to marketing-driven DevRel by enforcing a strict code-first, prose-second constraint. By utilizing Draft-Conditioned Constrained Decoding (DCCD) and a FIPI-powered Symbolic Scar Registry, DAX-01 guarantees that all generated documentation is syntactically verified, progressively disclosed, and epistemically aligned with the target API's AST.
