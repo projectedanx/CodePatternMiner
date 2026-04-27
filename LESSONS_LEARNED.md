@@ -144,3 +144,17 @@ We integrated the **DRP-LEXICON-992 v1.0** standard into the repository:
 
 ### Outcome
 The inclusion of `LEXICON.md` formalizes the codebase's cognitive architecture, ensuring that Sovereign Agents (like AXIOM, LEXIS SOVEREIGN, VANCE, and DAX-01) share a mathematically and topologically sound vocabulary. This mitigates Semantic Saponification and guarantees predictable, schema-conformant behavior during complex code synthesis and document generation.
+
+## Issue: Epistemic Vulnerabilities in RAG Pipelines
+
+### What Happened
+During the formulation of AI-driven interfaces within Next.js, traditional LLM interactions presented severe risks of Hallucination and Stale Context. Without structural validation, the agent risked inventing factual claims not present in the primary knowledge base, thereby introducing "Epistemic Vulnerabilities".
+
+### How We Addressed It
+We integrated the **Next.js Frontend RAG Agent**, employing a strict **Reflector + ToolUser** composite architecture:
+1.  **Citation-Backed Synthesis**: Enforced tool usage (`generate_citations`) mapping generated phrases back to retrieved source document IDs.
+2.  **Vector Constraints**: Leveraged structured vector searching in Firestore (`retrieve_documents`) paired with an LLM re-ranking step (`rerank_results`) to ensure highly relevant context injection.
+3.  **Antifragile Rollback**: Built-in fallbacks such as keyword search failovers when vector mechanisms decay.
+
+### Outcome
+This integration established a defensible, hallucination-resistant retrieval pipeline. By requiring structural schema output with explicit source document attribution, we immunized the system against generative sycophancy and uncontrolled narrative drift, establishing true context groundedness.
