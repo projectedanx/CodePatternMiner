@@ -146,3 +146,46 @@ server.registerTool(
     }
   }
 );
+
+server.registerTool(
+  "generateSearchQuery",
+  {
+    title: "Generate Semantic Search Query",
+    description: [
+      "PURPOSE: Generates semantic search tags based on a provided coding query.",
+      "GUIDELINES: Invoke when the agent needs to generate relevant search tags for a problem.",
+      "LIMITATIONS: query maxLength 500 characters. Depends on Gemini AI context limits.",
+      "PARAMETERS: query — The search string or coding problem.",
+      "LENGTH: ~50 lines of code.",
+      "EXAMPLES: query='React hooks', outputs=['react', 'hooks', 'useeffect']"
+    ].join(" "),
+    inputSchema: z.object({
+      query: z
+        .string()
+        .max(500)
+        .describe("The search string or coding problem. Max 500 characters."),
+    }),
+  },
+  async ({ query }) => {
+    try {
+      const tags = await intelligenceGateway.generateSearchQuery(query);
+      return {
+        content: [{ type: "text", text: JSON.stringify(tags, null, 2) }],
+      };
+    } catch (err: any) {
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            error_code: "TOOL_FAULT_GENERAL_PROGRAMMING",
+            fault_category: "GENERAL_PROGRAMMING",
+            structured_detail: { violation: "SEARCH_QUERY_FAILED", message: err.message },
+            retry_viable: true,
+            suggested_decomposition: "Try a shorter or more specific query.",
+          }),
+        }],
+        isError: true,
+      };
+    }
+  }
+);
