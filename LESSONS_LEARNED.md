@@ -158,3 +158,14 @@ We integrated the **Next.js Frontend RAG Agent**, employing a strict **Reflector
 
 ### Outcome
 This integration established a defensible, hallucination-resistant retrieval pipeline. By requiring structural schema output with explicit source document attribution, we immunized the system against generative sycophancy and uncontrolled narrative drift, establishing true context groundedness.
+
+## Issue: Incomplete Pluriversal Intelligence Enablement (generateSearchQuery)
+
+### What Happened
+The `generateSearchQuery` functionality existed in the `IntelligenceGateway` and the Gemini provider implementation, allowing for semantic tagging of arbitrary coding queries. However, this functionality was not exposed as a tool within the `mcp_server.ts` configuration, limiting the agentic workflow and failing to fully fulfill the Pluriversal Gateway requirements.
+
+### How We Addressed It
+We registered the `generateSearchQuery` tool in `services/mcp_server.ts` utilizing the strict 6-component documentation rubric (PURPOSE, GUIDELINES, LIMITATIONS, PARAMETERS, LENGTH, EXAMPLES) and integrated it with the existing CABP Broker Middleware and SERF-compliant error handling.
+
+### Outcome
+The agent can now natively execute semantic search tagging generation over MCP via the `generateSearchQuery` tool. This completes the Pluriversal Gateway interface requirement, fully decoupling the semantic tagging logic from the client layer and exposing it securely to external agents.
