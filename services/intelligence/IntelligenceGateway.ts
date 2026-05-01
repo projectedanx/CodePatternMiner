@@ -58,6 +58,15 @@ export class IntelligenceGateway {
   /**
    * Routes semantic tag generation request to the appropriate provider.
    */
+
+  /**
+   * Routes a refactor request to the appropriate provider.
+   */
+  public async refactorPattern(pattern: CodePattern, providerName?: string): Promise<CodePattern> {
+    const provider = this.getProvider(providerName);
+    return provider.refactorPattern(pattern);
+  }
+
   public async generateSearchQuery(query: string, providerName?: string): Promise<string[]> {
     const provider = this.getProvider(providerName);
     return provider.generateSearchQuery(query);
