@@ -71,6 +71,18 @@ export interface GoldenScar {
   timestamp: string;
 }
 
+
+/**
+ * Holds a proposed AI refactor in a state of Paraconsistent Tension.
+ * It must be explicitly resolved by a human operator using the Golden Scar Protocol.
+ */
+export interface EpistemicEscrow {
+  proposedCode: string;
+  proposedComplexity: number;
+  tensionMetric: number; // e.g., CFDI (Confidence-Fidelity Divergence Index)
+  status: 'PENDING' | 'RESOLVED_ACCEPTED' | 'RESOLVED_REJECTED';
+}
+
 export interface CodePattern {
   id: string;
   name: string;
@@ -86,6 +98,7 @@ export interface CodePattern {
   usageDocs: string;
   origin: 'USER_INPUT' | 'NEURAL_MINE';
   goldenScar?: GoldenScar;
+  epistemicEscrow?: EpistemicEscrow;
 }
 
 /**

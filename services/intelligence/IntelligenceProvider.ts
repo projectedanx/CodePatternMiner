@@ -37,4 +37,14 @@ export interface IntelligenceProvider {
    * @returns {Promise<string[]>} An array of semantic tags.
    */
   generateSearchQuery(query: string): Promise<string[]>;
+
+  /**
+   * Refactors a code pattern to reduce complexity and improve stability.
+   *
+   * @param {CodePattern} pattern - The pattern to refactor.
+   * @returns {Promise<CodePattern>} The refactored code pattern.
+   * @throws {Error} If refactoring fails.
+   */
+  refactorPattern(pattern: CodePattern): Promise<CodePattern>;
+
 }

@@ -159,6 +159,44 @@ export class GeminiProvider implements IntelligenceProvider {
     }
   }
 
+
+  public async refactorPattern(pattern: CodePattern): Promise<CodePattern> {
+    const ai = getClient();
+    const prompt = `
+      ACT AS A SOVEREIGN FIXER AGENT.
+      You are required to refactor the following \${pattern.sovereignRating} code pattern to reduce its cyclomatic complexity and improve its stability to 'STABLE'.
+
+      CRITICAL INSTRUCTION: You must simplify the logic WHILE ATTEMPTING to preserve any hidden human context or edge cases.
+      This contradiction is intentional.
+
+      Current Pattern:
+      \${pattern.code}
+
+      Generate a valid JSON object matching the standard PATTERN_SCHEMA with your refactored code and an updated complexity score.
+    `;
+
+    try {
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: PATTERN_SCHEMA.items // Use the item schema for a single pattern
+        }
+      });
+
+      if (response.text) {
+         // Return as array, parseAndEnrich expects array
+         const enriched = await parseAndEnrichPatterns(`[\${response.text}]`, 'NEURAL_MINE');
+         return enriched[0];
+      }
+      throw new Error("No response from Gemini");
+    } catch (error) {
+      console.error("Gemini Refactor Protocol Failed:", error);
+      throw error;
+    }
+  }
+
   public async generateSearchQuery(query: string): Promise<string[]> {
       const ai = getClient();
       try {

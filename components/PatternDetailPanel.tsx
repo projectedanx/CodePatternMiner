@@ -3,7 +3,8 @@ import { CodePattern, ASTNode } from '../types';
 import { PatternLinkRenderer } from './PatternCard';
 import { ASTVisualizer } from './ASTVisualizer';
 import { fetchASTFromPhantomStorage } from '../services/phantomStorage';
-import { X, Copy, Tag, Code2, FileText, Share2, Loader2 , Anchor, Edit3 } from 'lucide-react';
+import { X, Copy, Tag, Code2, FileText, Share2, Loader2, Anchor, Edit3, ShieldAlert, Cpu } from 'lucide-react';
+import { fixerAgent } from '../services/intelligence/FixerAgent';
 
 interface PatternDetailPanelProps {
   selected: CodePattern | null;
@@ -25,7 +26,11 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
   const [astError, setAstError] = useState<string | null>(null);
 
   const [isAdjudicating, setIsAdjudicating] = useState(false);
+
   const [rationale, setRationale] = useState('');
+  const [isFixing, setIsFixing] = useState(false);
+  const [escrowRationale, setEscrowRationale] = useState('');
+
 
 
   useEffect(() => {
@@ -87,6 +92,123 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
                <div className="text-xl font-bold text-primary">{(selected.confidence * 100).toFixed(0)}%</div>
             </div>
          </div>
+
+
+         {/* Sovereign Fixer Section */}
+         {(selected.sovereignRating === 'CRITICAL' || selected.sovereignRating === 'VOLATILE') && !selected.epistemicEscrow && (
+            <div className="bg-red-900/10 border border-red-500/30 rounded p-4 flex justify-between items-center">
+               <div className="flex items-center gap-3">
+                  <ShieldAlert className="text-red-500" size={20} />
+                  <div>
+                     <div className="text-xs font-bold text-red-500 font-mono">HIGH COMPLEXITY DETECTED</div>
+                     <div className="text-[10px] text-tertiary font-mono">Thermodynamic reduction recommended.</div>
+                  </div>
+               </div>
+               <button
+                  onClick={async () => {
+                     setIsFixing(true);
+                     try {
+                        const fixedPattern = await fixerAgent.proposeFix(selected);
+                        if (onUpdatePattern) onUpdatePattern(fixedPattern);
+                     } catch (e) {
+                        console.error(e);
+                     } finally {
+                        setIsFixing(false);
+                     }
+                  }}
+                  disabled={isFixing}
+                  className="px-4 py-2 bg-red-500/20 text-red-400 text-xs font-mono font-bold border border-red-500/50 rounded hover:bg-red-500 hover:text-black transition-colors flex items-center gap-2"
+               >
+                  {isFixing ? <Loader2 className="animate-spin" size={14} /> : <Cpu size={14} />}
+                  TRIGGER SOVEREIGN FIXER
+               </button>
+            </div>
+         )}
+
+         {/* Epistemic Escrow Section */}
+         {selected.epistemicEscrow && selected.epistemicEscrow.status === 'PENDING' && (
+            <section className="bg-surface-light p-4 rounded border-2 border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative">
+               <div className="flex items-center gap-2 mb-4 text-purple-400">
+                  <Cpu size={16} />
+                  <h3 className="text-sm font-bold font-mono uppercase tracking-wider">EPISTEMIC ESCROW: PARACONSISTENT TENSION</h3>
+               </div>
+
+               <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="p-3 bg-surface border border-red-500/30 rounded">
+                     <div className="text-[10px] font-mono text-red-400 mb-2 border-b border-red-500/30 pb-1">ORIGINAL (MESSY HUMAN CONTEXT)</div>
+                     <div className="text-xl font-bold text-primary mb-2">C: {selected.complexity}</div>
+                     <pre className="text-[10px] text-secondary font-mono overflow-x-auto max-h-32">
+                        {selected.code}
+                     </pre>
+                  </div>
+                  <div className="p-3 bg-surface border border-neon-cyan/30 rounded">
+                     <div className="text-[10px] font-mono text-neon-cyan mb-2 border-b border-neon-cyan/30 pb-1">PROPOSED (THERMODYNAMIC REDUCTION)</div>
+                     <div className="text-xl font-bold text-primary mb-2">C: {selected.epistemicEscrow.proposedComplexity}</div>
+                     <pre className="text-[10px] text-secondary font-mono overflow-x-auto max-h-32">
+                        {selected.epistemicEscrow.proposedCode}
+                     </pre>
+                  </div>
+               </div>
+
+               <div className="animate-in slide-in-from-top-2">
+                  <textarea
+                     value={escrowRationale}
+                     onChange={(e) => setEscrowRationale(e.target.value)}
+                     className="w-full bg-surface border border-yellow-500/30 rounded p-2 text-xs font-mono text-primary focus:outline-none focus:border-yellow-500 resize-none mb-2"
+                     placeholder="Enter empirical rationale for overriding AI..."
+                     rows={2}
+                  />
+                  <div className="flex justify-end gap-2">
+                     <button
+                        onClick={() => {
+                           const updatedPattern = {
+                              ...selected,
+                              code: selected.epistemicEscrow!.proposedCode,
+                              complexity: selected.epistemicEscrow!.proposedComplexity,
+                              sovereignRating: 'STABLE',
+                              epistemicEscrow: {
+                                 ...selected.epistemicEscrow!,
+                                 status: 'RESOLVED_ACCEPTED' as const
+                              },
+                              goldenScar: {
+                                  adjudicator: 'root',
+                                  rationale: escrowRationale || "AI Reduction accepted as structurally sound.",
+                                  tensionWeight: 1.0,
+                                  timestamp: new Date().toISOString()
+                              }
+                           };
+                           if (onUpdatePattern) onUpdatePattern(updatedPattern);
+                        }}
+                        className="px-3 py-1 text-xs font-mono bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/50 rounded hover:bg-neon-cyan hover:text-black transition-colors"
+                     >
+                        ACCEPT FIX (AI DOMINANT)
+                     </button>
+                     <button
+                        onClick={() => {
+                           const updatedPattern = {
+                              ...selected,
+                              epistemicEscrow: {
+                                 ...selected.epistemicEscrow!,
+                                 status: 'RESOLVED_REJECTED' as const
+                              },
+                              goldenScar: {
+                                  adjudicator: 'root',
+                                  rationale: escrowRationale,
+                                  tensionWeight: 1.618,
+                                  timestamp: new Date().toISOString()
+                              }
+                           };
+                           if (onUpdatePattern) onUpdatePattern(updatedPattern);
+                        }}
+                        className="px-3 py-1 text-xs font-mono bg-yellow-500/20 text-yellow-500 border border-yellow-500/50 rounded hover:bg-yellow-500 hover:text-black transition-colors"
+                        disabled={!escrowRationale.trim()}
+                     >
+                        RESOLVE (HUMAN DOMINANT Φ=1.618)
+                     </button>
+                  </div>
+               </div>
+            </section>
+         )}
 
          {/* Golden Scar / Human Adjudication Section */}
          <section className="bg-surface-light p-4 rounded border border-border-subtle relative overflow-hidden">
