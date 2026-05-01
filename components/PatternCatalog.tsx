@@ -12,6 +12,7 @@ import { X, Filter, Activity, Search } from 'lucide-react';
  */
 interface PatternCatalogProps {
   patterns: CodePattern[];
+  onUpdatePattern?: (pattern: CodePattern) => void;
 }
 
 /**
@@ -23,7 +24,7 @@ interface PatternCatalogProps {
  */
 const filters = ['ALL', ...Object.values(PatternType)];
 
-export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns }) => {
+export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns, onUpdatePattern }) => {
   const [selected, setSelected] = useState<CodePattern | null>(null);
   const [filter, setFilter] = useState<PatternType | 'ALL'>('ALL');
   const [minConfidence, setMinConfidence] = useState<number>(0);

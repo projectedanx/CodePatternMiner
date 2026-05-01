@@ -28,6 +28,10 @@ const App: React.FC = () => {
     setPatterns(prev => [...prev, ...newPatterns]);
   };
 
+  const handleUpdatePattern = (updatedPattern: CodePattern) => {
+    setPatterns(prev => prev.map(p => p.id === updatedPattern.id ? updatedPattern : p));
+  };
+
   const navItems = [
     { id: View.MINER, label: 'PATTERN MINER', icon: <Cpu size={18} /> },
     { id: View.CATALOG, label: 'COMPONENT CATALOG', icon: <Database size={18} /> },
@@ -53,6 +57,7 @@ const App: React.FC = () => {
       {currentView === View.CATALOG && (
         <PatternCatalog 
           patterns={patterns} 
+          onUpdatePattern={handleUpdatePattern}
         />
       )}
     </Layout>
