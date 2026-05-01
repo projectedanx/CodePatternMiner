@@ -52,6 +52,23 @@ describe('PatternCard Component', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
     expect(handleClick).toHaveBeenCalledWith(mockPattern);
   });
+
+  it('renders the Golden Scar indicator when present', () => {
+    const handleClick = vi.fn();
+    const patternWithScar = {
+      ...mockPattern,
+      goldenScar: {
+        adjudicator: 'root',
+        rationale: 'AI failed to account for edge case X.',
+        tensionWeight: 1.618,
+        timestamp: '2026-04-11T18:00:00Z'
+      }
+    };
+    render(<PatternCard pattern={patternWithScar} onClick={handleClick} />);
+
+    expect(screen.getByText('GOLDEN SCAR')).toBeInTheDocument();
+    expect(screen.getByText(/Human Adjudication/i)).toBeInTheDocument();
+  });
 });
 
 describe('PatternLinkRenderer Component', () => {

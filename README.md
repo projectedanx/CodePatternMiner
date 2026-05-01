@@ -70,6 +70,10 @@ The system operates on three primary layers:
 *   **Manual Mode**: Paste a messy file. The system dissects it into Functions, Classes, and Hooks.
 *   **Scout Mode**: Ask for "High performance debounce utility". The system generates 3 variations.
 
+### The Golden Scar Protocol (Human Adjudication)
+*   **Paraconsistent Tension:** A physical embodiment of the Golden Ratio (ϕ=1.618). AI stochastic generation is assigned a weight of 1.0, while human empirical governance (the "Scar") is assigned 1.618.
+*   **Adjudication UI:** Humans can inject contextual rationale into AI-mined patterns directly from the UI, overriding "Algorithmic Shame" and ensuring true project alignment without collapsing the underlying logic.
+
 ### The Catalog
 *   **Filter**: Sort by Confidence, Type, or Sovereign Rating.
 *   **Inspect**: Click any card to open the "Context Slide-over".

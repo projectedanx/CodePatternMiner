@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { CodePattern } from '../types';
-import { Box, Layers, Activity, ShieldCheck, ShieldAlert, Zap, Cpu, Tag, FileText } from 'lucide-react';
+import { Box, Layers, Activity, ShieldCheck, ShieldAlert, Zap, Cpu, Tag, FileText, Anchor } from 'lucide-react';
 
 /**
  * Properties required by the PatternCard component.
@@ -126,9 +126,24 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
              <FileText size={12} />
            </button>
         </div>
-        <div className={`text-xs px-2 py-1 rounded border font-mono tracking-wider flex items-center gap-1 ${getSovereignColor(pattern.sovereignRating)}`}>
-            {pattern.sovereignRating === 'STABLE' ? <ShieldCheck size={10} /> : <ShieldAlert size={10} />}
-            {pattern.sovereignRating}
+
+        <div className="flex items-center">
+          <div className={`text-xs px-2 py-1 rounded border font-mono tracking-wider flex items-center gap-1 ${getSovereignColor(pattern.sovereignRating)}`}>
+              {pattern.sovereignRating === 'STABLE' ? <ShieldCheck size={10} /> : <ShieldAlert size={10} />}
+              {pattern.sovereignRating}
+          </div>
+          {pattern.goldenScar && (
+            <div className="text-[10px] px-2 py-1 ml-2 rounded border font-mono tracking-wider flex items-center gap-1 text-yellow-500 border-yellow-500/20 bg-yellow-500/5 group/scar relative cursor-help">
+              <Anchor size={10} />
+              GOLDEN SCAR
+              <div className="absolute bottom-full right-0 mb-2 w-48 p-3 bg-surface border border-border-subtle rounded shadow-xl opacity-0 group-hover/scar:opacity-100 transition-opacity pointer-events-none z-20 font-sans normal-case tracking-normal">
+                <div className="text-[10px] font-bold text-primary uppercase mb-1">Human Adjudication (ϕ=1.618)</div>
+                <div className="text-xs text-secondary leading-tight line-clamp-3">
+                  {pattern.goldenScar.rationale}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       

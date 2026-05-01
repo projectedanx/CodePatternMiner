@@ -3,24 +3,30 @@ import { CodePattern, ASTNode } from '../types';
 import { PatternLinkRenderer } from './PatternCard';
 import { ASTVisualizer } from './ASTVisualizer';
 import { fetchASTFromPhantomStorage } from '../services/phantomStorage';
-import { X, Copy, Tag, Code2, FileText, Share2, Loader2 } from 'lucide-react';
+import { X, Copy, Tag, Code2, FileText, Share2, Loader2 , Anchor, Edit3 } from 'lucide-react';
 
 interface PatternDetailPanelProps {
   selected: CodePattern | null;
   onClose: () => void;
   allPatternNames: string[];
   onLinkClick: (name: string) => void;
+  onUpdatePattern?: (pattern: CodePattern) => void;
 }
 
 export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
   selected,
   onClose,
   allPatternNames,
-  onLinkClick
+  onLinkClick,
+  onUpdatePattern
 }) => {
   const [ast, setAst] = useState<ASTNode | null>(null);
   const [isLoadingAST, setIsLoadingAST] = useState<boolean>(false);
   const [astError, setAstError] = useState<string | null>(null);
+
+  const [isAdjudicating, setIsAdjudicating] = useState(false);
+  const [rationale, setRationale] = useState('');
+
 
   useEffect(() => {
     if (selected?.astStorageUri) {
@@ -81,6 +87,83 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
                <div className="text-xl font-bold text-primary">{(selected.confidence * 100).toFixed(0)}%</div>
             </div>
          </div>
+
+         {/* Golden Scar / Human Adjudication Section */}
+         <section className="bg-surface-light p-4 rounded border border-border-subtle relative overflow-hidden">
+            <div className="flex items-center justify-between mb-2">
+               <div className="flex items-center gap-2 text-yellow-500">
+                  <Anchor size={16} />
+                  <h3 className="text-sm font-bold font-mono uppercase tracking-wider">Golden Scar Protocol</h3>
+               </div>
+               {selected.goldenScar && (
+                  <span className="text-[10px] font-mono bg-yellow-500/10 text-yellow-500 px-2 py-1 rounded">
+                     ϕ=1.618 APPLIED
+                  </span>
+               )}
+            </div>
+
+            {selected.goldenScar ? (
+               <div className="mt-2 pl-4 border-l-2 border-yellow-500">
+                  <div className="text-xs font-mono text-tertiary mb-1">
+                     By: {selected.goldenScar.adjudicator} | {new Date(selected.goldenScar.timestamp).toLocaleString()}
+                  </div>
+                  <p className="text-sm text-secondary font-sans italic">"{selected.goldenScar.rationale}"</p>
+               </div>
+            ) : (
+               <div className="mt-2">
+                  {!isAdjudicating ? (
+                     <div className="flex justify-between items-center">
+                        <p className="text-xs text-tertiary font-mono">No paraconsistent tension injected. AI stochastic output unverified.</p>
+                        <button
+                           onClick={() => setIsAdjudicating(true)}
+                           className="text-xs flex items-center gap-1 text-yellow-500 hover:text-yellow-400 font-mono tracking-wider transition-colors"
+                        >
+                           <Edit3 size={12} /> INJECT SCAR
+                        </button>
+                     </div>
+                  ) : (
+                     <div className="animate-in slide-in-from-top-2 duration-200">
+                        <textarea
+                           value={rationale}
+                           onChange={(e) => setRationale(e.target.value)}
+                           className="w-full bg-surface border border-yellow-500/30 rounded p-2 text-xs font-mono text-primary focus:outline-none focus:border-yellow-500 resize-none mb-2"
+                           placeholder="Enter empirical governance rationale to anchor AI output..."
+                           rows={3}
+                        />
+                        <div className="flex justify-end gap-2">
+                           <button
+                              onClick={() => { setIsAdjudicating(false); setRationale(''); }}
+                              className="px-3 py-1 text-xs font-mono text-tertiary hover:text-secondary transition-colors"
+                           >
+                              CANCEL
+                           </button>
+                           <button
+                              onClick={() => {
+                                 const updatedPattern = {
+                                    ...selected,
+                                    goldenScar: {
+                                        adjudicator: 'root',
+                                        rationale: rationale,
+                                        tensionWeight: 1.618,
+                                        timestamp: new Date().toISOString()
+                                    }
+                                 };
+                                 if (onUpdatePattern) {
+                                     onUpdatePattern(updatedPattern);
+                                 }
+                                 setIsAdjudicating(false);
+                              }}
+                              className="px-3 py-1 text-xs font-mono bg-yellow-500/20 text-yellow-500 border border-yellow-500/50 rounded hover:bg-yellow-500 hover:text-black transition-colors"
+                              disabled={!rationale.trim()}
+                           >
+                              APPLY ϕ=1.618
+                           </button>
+                        </div>
+                     </div>
+                  )}
+               </div>
+            )}
+         </section>
 
          {/* AST Viz */}
          <section>
