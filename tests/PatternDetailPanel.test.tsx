@@ -3,6 +3,19 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { PatternDetailPanel } from '../components/PatternDetailPanel';
 import { CodePattern, PatternType } from '../types';
 import { fixerAgent } from '../services/intelligence/FixerAgent';
+import { fetchASTFromPhantomStorage } from '../services/phantomStorage';
+
+vi.mock('../services/phantomStorage', () => ({
+  fetchASTFromPhantomStorage: vi.fn().mockResolvedValue({ name: 'root', type: 'Program', children: [] })
+}));
+
+import { ASTVisualizer } from '../components/ASTVisualizer';
+
+vi.mock('../components/ASTVisualizer', () => ({
+  ASTVisualizer: () => <div data-testid="mock-ast-visualizer" />
+}));
+
+
 
 vi.mock('../services/intelligence/FixerAgent', () => ({
   fixerAgent: {
