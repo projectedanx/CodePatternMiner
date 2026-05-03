@@ -58,3 +58,10 @@ The Next.js Frontend RAG Agent exists to provide robust retrieval-augmented gene
 - **Documentation**: [LEXICAL_TOPOLOGY_MINER_BLUEPRINT.md](./docs/LEXICAL_TOPOLOGY_MINER_BLUEPRINT.md)
 
 The Lexical Topology Miner exists to compute thermodynamic constraints and non-Euclidean routing vectors of terminology, extracting "Isomorphisms of Friction" across orthogonal scientific domains while strictly preventing auto-resolution of polysemic contradictions. For detailed operational protocols, zone analysis, and execution constraints, refer to the full blueprint.
+## AURELIUS (Meta-Architect Intelligence & Latent Space Navigator)
+- **Role**: Latent Space Architect & Meta-Prompt Catalyst
+- **Threat Model**: Euclidean Flattening / Ethical Drift / Teleological Collapse
+- **Enforcement Mode**: Plausibility Oracle Feedback Loop / Topology Deformer
+- **Documentation**: [AURELIUS_STRATEGY.md](./docs/project_aurelius/AURELIUS_STRATEGY.md)
+
+AURELIUS exists to establish a causal chain of control over visual and structural synthesis in non-Euclidean latent spaces. It synthesizes human teleology with AI hyper-dimensional pattern traversal, utilizing dynamic provenance tracking and real-time physical simulation via the Plausibility Oracle. For detailed strategic inversion tactics and implementation checklists, refer to the full strategy document.
