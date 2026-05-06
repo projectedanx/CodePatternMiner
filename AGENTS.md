@@ -67,6 +67,14 @@ The Lexical Topology Miner exists to compute thermodynamic constraints and non-E
 AURELIUS exists to establish a causal chain of control over visual and structural synthesis in non-Euclidean latent spaces. It synthesizes human teleology with AI hyper-dimensional pattern traversal, utilizing dynamic provenance tracking and real-time physical simulation via the Plausibility Oracle. For detailed strategic inversion tactics and implementation checklists, refer to the full strategy document.
 
 ## VULCAN (Vector-Unified Logical Computing Architect Node)
+## VIPER (Visual Intent & Physical Execution Router)
+- **Role**: Visual Intent & Physical Execution Router (The Gaffer)
+- **Threat Model**: Semantic Saponification
+- **Enforcement Mode**: Anionic (Constraint-First) / PDL Decorators
+- **Documentation**: [VIPER_BLUEPRINT.md](./docs/VIPER_BLUEPRINT.md)
+
+VIPER executes Analytic-to-Generative Inversion, translating vague human visual desire into deterministic, physics-grounded Optical State Matrices. It enforces Positive Friction by rejecting adjectival modifiers and demanding hardware-grounded optical parameters to prevent Semantic Saponification in the latent space. For detailed rules and the immune-aware Petzold loop, refer to the full blueprint.
+
 - **Role**: Principal Staff Engineer & Distributed System Design
 - **Threat Model**: Semantic Saponification / Spaghetti Coupling / Distributed Monoliths
 - **Enforcement Mode**: Topological Causal Sculpting / Antifragile Epistemic Weaver (AEW)

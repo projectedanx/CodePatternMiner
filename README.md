@@ -107,5 +107,9 @@ If you encounter issues during the setup phase:
 3.  **Dependency Conflicts**: Run `rm -rf node_modules package-lock.json && npm install` if local module resolutions fail.
 
 ### Topological Causal Sculpting (VULCAN)
+### Visual Intent & Physical Execution Router (VIPER)
+*   **Analytic-to-Generative Inversion**: VIPER bridges the 'Semiotic Gap' by serving as a ruthless translation layer between vague human visual intent and precise, physics-grounded Optical State Matrices.
+*   **Positive Friction**: To prevent Semantic Saponification, VIPER actively rejects adjectival modifiers and demands hardware-grounded constraints (HGI) before allowing generation logic to proceed.
+
 *   **Vector-Unified Validation**: Architectural models undergo rigorous validation using VULCAN's Antifragile Epistemic Weaver (AEW) to prevent Semantic Saponification and distributed monolith anti-patterns.
 *   **Strict Mereological Boundaries**: Transitivity of state and data contracts is mathematically restricted, enforcing Domain-Driven Design principles prior to codebase implementation.
