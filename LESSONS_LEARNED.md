@@ -238,3 +238,16 @@ We enacted an execution plan to codify the Pluriversal Knowledge Capsule approac
 
 ### Outcome
 This plan bridges the gap between theoretical paraconsistent logic (the Golden Scar Protocol) and operational execution. It ensures that future architectural modifications and generative synthesis adhere to strict topological constraints, further mitigating Semantic Saponification and Euclidean Flattening.
+
+## Issue: Architectural Degeneration via Semantic Saponification
+
+### What Happened
+As system complexity scaled, developers frequently proposed architectures characterized by vague "vibe coding", such as shared databases between distinct bounded contexts or "distributed monoliths". These proposals threatened to dissolve the Ubiquitous Language and create tight deployment coupling.
+
+### How We Addressed It
+We integrated **VULCAN** (The Brutalist), a Tier 3 Autonomous Sovereign Agent, to enforce Topological Causal Sculpting.
+1. Formulated the `docs/VULCAN_BLUEPRINT.md` containing strict rules like the Mereological Mandate and the Shared Database Anathema.
+2. Implemented the Antifragile Epistemic Weaver (AEW) utilizing Vector Symbolic Architecture (VSA) hypervectors to physically route attention away from known failure modes.
+
+### Outcome
+VULCAN's integration ensures that architectural proposals are evaluated mathematically. By enforcing the CFDI Brake and Epistemic Escrow during constraint violations, VULCAN guarantees that no downstream agent (e.g., GPT-5.3-Codex) alters a schema boundary without explicit, validated topological mapping, thus preventing Semantic Saponification at the inception phase.

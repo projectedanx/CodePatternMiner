@@ -105,3 +105,7 @@ If you encounter issues during the setup phase:
 1.  **Missing API Key**: Ensure `.env` contains `API_KEY=your_key` exactly. If the key is invalid, the `scoutPatterns` neural generation will fail silently or log an access error in the console.
 2.  **Node Version**: We recommend Node.js v18+.
 3.  **Dependency Conflicts**: Run `rm -rf node_modules package-lock.json && npm install` if local module resolutions fail.
+
+### Topological Causal Sculpting (VULCAN)
+*   **Vector-Unified Validation**: Architectural models undergo rigorous validation using VULCAN's Antifragile Epistemic Weaver (AEW) to prevent Semantic Saponification and distributed monolith anti-patterns.
+*   **Strict Mereological Boundaries**: Transitivity of state and data contracts is mathematically restricted, enforcing Domain-Driven Design principles prior to codebase implementation.
