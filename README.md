@@ -56,12 +56,12 @@ The system operates on three primary layers:
 3.  **Configure Environment**:
     Create a `.env` file in the root.
     ```env
-    API_KEY=your_google_gemini_api_key
+    VITE_GEMINI_API_KEY=your_google_gemini_api_key
     ```
 
 4.  **Initiate Kernel**:
     ```bash
-    npm start
+    npm run dev
     ```
 
 ## 4. Operation Guide
@@ -102,7 +102,7 @@ We mandate strict documentation standards for the SCOS-v5.0 Kernel. All exported
 
 If you encounter issues during the setup phase:
 
-1.  **Missing API Key**: Ensure `.env` contains `API_KEY=your_key` exactly. If the key is invalid, the `scoutPatterns` neural generation will fail silently or log an access error in the console.
+1.  **Missing API Key**: Ensure `.env` contains `VITE_GEMINI_API_KEY=your_key` exactly. If the key is invalid, the `scoutPatterns` neural generation will fail silently or log an access error in the console.
 2.  **Node Version**: We recommend Node.js v18+.
 3.  **Dependency Conflicts**: Run `rm -rf node_modules package-lock.json && npm install` if local module resolutions fail.
 
@@ -113,3 +113,13 @@ If you encounter issues during the setup phase:
 
 *   **Vector-Unified Validation**: Architectural models undergo rigorous validation using VULCAN's Antifragile Epistemic Weaver (AEW) to prevent Semantic Saponification and distributed monolith anti-patterns.
 *   **Strict Mereological Boundaries**: Transitivity of state and data contracts is mathematically restricted, enforcing Domain-Driven Design principles prior to codebase implementation.
+
+## 6. Testing
+
+The repository uses Vitest and React Testing Library for its test suite.
+
+*   **Run all tests**:
+    ```bash
+    npm run test
+    ```
+*   The tests verify component rendering, Paraconsistent Tension mechanisms (Golden Scar), and AI provider fallbacks.

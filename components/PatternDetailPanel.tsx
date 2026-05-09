@@ -14,6 +14,12 @@ interface PatternDetailPanelProps {
   onUpdatePattern?: (pattern: CodePattern) => void;
 }
 
+/**
+ * Displays detailed information about a specific code pattern, including its source code, AST visualization, and metadata.
+ *
+ * @param {PatternDetailPanelProps} props - Component props.
+ * @returns {JSX.Element} The rendered pattern detail panel component.
+ */
 export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
   selected,
   onClose,
