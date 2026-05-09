@@ -6,6 +6,14 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import jwt from "jsonwebtoken";
 
 // CABP Broker Middleware (Stage 1-4 of 6-stage pipeline)
+/**
+ * Express middleware to enforce Content-Agnostic Broker Protocol (CABP).
+ * Extracts necessary metadata and ensures standard error responses.
+ *
+ * @param {express.Request} req - The Express request object.
+ * @param {express.Response} res - The Express response object.
+ * @param {express.NextFunction} next - The next middleware function in the stack.
+ */
 function cabpMiddleware(
   req: express.Request,
   res: express.Response,

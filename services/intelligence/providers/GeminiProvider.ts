@@ -81,9 +81,19 @@ const parseAndEnrichPatterns = async (text: string, origin: 'USER_INPUT' | 'NEUR
   return enrichedPatterns;
 };
 
+/**
+ * A concrete implementation of IntelligenceProvider that utilizes Google's Gemini models.
+ * Handles AI-driven code analysis, pattern discovery, and refactoring.
+ */
 export class GeminiProvider implements IntelligenceProvider {
   public readonly name = "GEMINI_3_FLASH";
 
+  /**
+   * Analyzes a given code block to extract metadata, complexity, and topological features.
+   *
+   * @param {string} code - The raw source code to analyze.
+   * @returns {Promise<CodePattern[]>} The extracted metadata mapped to an array of CodePatterns.
+   */
   public async analyzeCodeBlock(code: string): Promise<CodePattern[]> {
     const ai = getClient();
     const prompt = `
@@ -122,6 +132,12 @@ export class GeminiProvider implements IntelligenceProvider {
     }
   }
 
+  /**
+   * Scans a large codebase or string of code to automatically identify and extract reusable patterns.
+   *
+   * @param {string} topic - The topic to search patterns for.
+   * @returns {Promise<CodePattern[]>} An array of independently identified and enriched patterns.
+   */
   public async scoutPatterns(topic: string): Promise<CodePattern[]> {
     const ai = getClient();
     const prompt = `
@@ -160,6 +176,12 @@ export class GeminiProvider implements IntelligenceProvider {
   }
 
 
+  /**
+   * Proposes a refactored version of the given pattern.
+   *
+   * @param {CodePattern} pattern - The original pattern to refactor.
+   * @returns {Promise<CodePattern>} The refactored pattern.
+   */
   public async refactorPattern(pattern: CodePattern): Promise<CodePattern> {
     const ai = getClient();
     const prompt = `
@@ -197,6 +219,12 @@ export class GeminiProvider implements IntelligenceProvider {
     }
   }
 
+  /**
+   * Converts a user's natural language input into a structured codebase search query.
+   *
+   * @param {string} query - The natural language intent.
+   * @returns {Promise<string[]>} An array of structural query tokens.
+   */
   public async generateSearchQuery(query: string): Promise<string[]> {
       const ai = getClient();
       try {

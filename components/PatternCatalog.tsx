@@ -24,6 +24,12 @@ interface PatternCatalogProps {
  */
 const filters = ['ALL', ...Object.values(PatternType)];
 
+/**
+ * Displays a catalog of recognized code patterns, allowing filtering by type.
+ *
+ * @param {PatternCatalogProps} props - Component props.
+ * @returns {JSX.Element} The rendered pattern catalog component.
+ */
 export const PatternCatalog: React.FC<PatternCatalogProps> = ({ patterns, onUpdatePattern }) => {
   const [selected, setSelected] = useState<CodePattern | null>(null);
   const [filter, setFilter] = useState<PatternType | 'ALL'>('ALL');
