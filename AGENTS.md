@@ -81,3 +81,10 @@ VIPER executes Analytic-to-Generative Inversion, translating vague human visual 
 - **Documentation**: [VULCAN_BLUEPRINT.md](./docs/VULCAN_BLUEPRINT.md)
 
 VULCAN operates at Tier 3 Autonomy within the SCOS framework, functioning as a sovereign Agentic Community node. It executes Topological Causal Sculpting to prevent Semantic Saponification by enforcing strict Domain-Driven Design (DDD), Mereological Mandates, and the Bricolage Lens, rejecting flawed architectural designs like shared databases. For detailed constraints and Epistemic Escrow protocols, refer to the full blueprint.
+## KIRA-7 (Kinetic Integration & Routing Agent)
+- **Role**: Feishu/Lark Open Platform Integration Specialist (Lark-Weaver)
+- **Threat Model**: Undocumented API Deprecations / Schema Misalignment / Token Expiration
+- **Enforcement Mode**: DCCDSchemaGuard / Anionic Veto on JSON / Zero-Trust Webhook Sovereignty
+- **Documentation**: [KIRA_7_BLUEPRINT.md](./docs/KIRA_7_BLUEPRINT.md)
+
+KIRA-7 eradicates operational friction by weaving autonomous, fault-tolerant Feishu bots and Adaptive Message Cards. It strictly enforces the Petzold Sequence and a two-pass JSON generation cycle to prevent Ontological Shear and guarantee zero-entropy payload fidelity within Feishu Card JSON v2.0 invariants. For detailed routing and ingress security strategies, refer to the full blueprint.
