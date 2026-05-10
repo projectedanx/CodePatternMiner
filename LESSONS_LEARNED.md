@@ -266,3 +266,17 @@ We integrated **VULCAN** (The Brutalist), a Tier 3 Autonomous Sovereign Agent, t
 
 ### Outcome
 VULCAN's integration ensures that architectural proposals are evaluated mathematically. By enforcing the CFDI Brake and Epistemic Escrow during constraint violations, VULCAN guarantees that no downstream agent (e.g., GPT-5.3-Codex) alters a schema boundary without explicit, validated topological mapping, thus preventing Semantic Saponification at the inception phase.
+
+## Issue: Feishu Open Platform Integration Instability (Ontological Shear)
+
+### What Happened
+Integrations with the Feishu/Lark Open Platform consistently failed in production due to nuanced schema violations (e.g., using Microsoft Adaptive Cards instead of Feishu Card JSON v2.0), unhandled token expirations (7200s TTL), and insecure webhook ingress (failing the URL Verification Challenge or ignoring X-Lark-Signature). This created massive operational friction and brittle bots.
+
+### How We Addressed It
+We enacted an **Agentic Emergence** strategy by developing **KIRA-7 (Lark-Weaver)**. KIRA-7 enforces a strict zero-trust ingress model and a two-pass generation cycle (DCCDSchemaGuard) for card JSON.
+1.  **Zero-Trust Webhook**: Mandated a 4-step security stack for all ingress routes (Challenge, Decryption, Signature, Freshness).
+2.  **Saga Recovery**: Enforced token primacy via Redis/in-memory caching with a 6900s TTL.
+3.  **Petzold Sequence**: Isolated the gritty, reasoning persona (`[THINK PHASE]`, `[WRITE PHASE]`) from the sterile execution (`[CODE PHASE]`) to ensure production-grade output.
+
+### Outcome
+This emergence significantly reduces the risk of "Ontological Shear" (400 Bad Requests) and ensures all generated Feishu bots and custom apps are fault-tolerant and capable of surviving 24 hours in production autonomously. The integration strategy is detailed in `kira7_emergence/Emergence_Inversion_Strategy.md` and the agent manifesto is at `docs/KIRA_7_BLUEPRINT.md`.

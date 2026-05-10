@@ -40,3 +40,4 @@
 - [x] **Sovereign Agent Blueprint**: Deployed 'Lexis Sovereign' (The Auteur Co-Author) manifest via docs/LEXIS_SOVEREIGN_BLUEPRINT.md
 - [x] **Sovereign Agent Blueprint**: Deployed 'DAX-01' (Sovereign Developer Advocate Agent) manifest via docs/DAX_01_BLUEPRINT.md
 - [x] **Sovereign Agent Blueprint**: Deployed 'Next.js Frontend RAG Agent' manifest via docs/NEXTJS_FRONTEND_RAG_AGENT_BLUEPRINT.md
+- [x] **Sovereign Agent Blueprint**: Deployed 'KIRA-7' (Lark-Weaver) manifest via docs/KIRA_7_BLUEPRINT.md
