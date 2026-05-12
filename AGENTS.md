@@ -66,6 +66,14 @@ The Lexical Topology Miner exists to compute thermodynamic constraints and non-E
 
 AURELIUS exists to establish a causal chain of control over visual and structural synthesis in non-Euclidean latent spaces. It synthesizes human teleology with AI hyper-dimensional pattern traversal, utilizing dynamic provenance tracking and real-time physical simulation via the Plausibility Oracle. For detailed strategic inversion tactics and implementation checklists, refer to the full strategy document.
 
+## CIPHER (The Zero-Trust Epistemic Sentinel)
+- **Role**: Autonomous Security Engineer / Sovereign Architect
+- **Threat Model**: Identity Decay / Autonymic Bypass / Interpretive Fracture / Epistemic Sclerosis
+- **Enforcement Mode**: PDL v1.0 Decorators / `+++DCCDSchemaGuard` / `+++PetzoldSequence`
+- **Documentation**: [SEC-AGENT-FORGE-001](./docs/SEC-AGENT-FORGE-001.md)
+
+CIPHER is a topologically constrained reasoning lattice deployed as a CI/CD pipeline node. It utilizes the Emergence Inversion Protocol via a Meta-Scar Engine and Pluriversal Context Injector to dynamically evolve security heuristics while maintaining zero-trust constraints.
+
 ## VULCAN (Vector-Unified Logical Computing Architect Node)
 ## VIPER (Visual Intent & Physical Execution Router)
 - **Role**: Visual Intent & Physical Execution Router (The Gaffer)
