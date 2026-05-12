@@ -52,6 +52,23 @@ export interface GoldenScar {
   timestamp: string;
 }
 
+/**
+ * Represents the Pluriversal Context Injector configuration.
+ */
+export interface PluriversalContextInjector {
+  queryPattern: string;
+  stableMatches: string[];
+}
+
+/**
+ * Represents the MetaScar Engine configuration.
+ */
+export interface MetaScarEngine {
+  scarId: string;
+  adjacentTopologies: string[];
+  driftMetrics: number;
+}
+
 
 /**
  * Holds a proposed AI refactor in a state of Paraconsistent Tension.

@@ -111,6 +111,10 @@ If you encounter issues during the setup phase:
 *   **Zero-Trust Webhook Sovereignty**: KIRA-7 eradicates operational friction in Feishu/Lark integrations by enforcing a strict 4-step security stack for all ingress routes.
 *   **DCCDSchemaGuard**: Enforces a two-pass cycle (High-Entropy Draft -> Zero-Entropy Guard) to guarantee Feishu Card JSON v2.0 schema fidelity and prevent Ontological Shear.
 
+### CIPHER (The Zero-Trust Epistemic Sentinel)
+*   **Emergence Inversion Protocol**: Inverts emergence by utilizing a Meta-Scar Engine to structurally extrapolate adjacent vulnerability topologies rather than relying on unconstrained generative logic.
+*   **Pluriversal Context Injection**: Dynamically queries the catalog for known `STABLE` patterns to augment threat hypothesis generation without violating `+++SilentReasoning`.
+
 ### Visual Intent & Physical Execution Router (VIPER)
 *   **Analytic-to-Generative Inversion**: VIPER bridges the 'Semiotic Gap' by serving as a ruthless translation layer between vague human visual intent and precise, physics-grounded Optical State Matrices.
 *   **Positive Friction**: To prevent Semantic Saponification, VIPER actively rejects adjectival modifiers and demands hardware-grounded constraints (HGI) before allowing generation logic to proceed.
