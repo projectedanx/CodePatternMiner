@@ -1,10 +1,10 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MinerDashboard } from '../components/MinerDashboard';
-import { intelligenceGateway } from '../services/intelligence/IntelligenceGateway';
+import { MinerDashboard } from '../src/components/MinerDashboard';
+import { intelligenceGateway } from '../src/services/intelligence/IntelligenceGateway';
 
-vi.mock('../services/intelligence/IntelligenceGateway', () => ({
+vi.mock('../src/services/intelligence/IntelligenceGateway', () => ({
   intelligenceGateway: {
     analyzeCodeBlock: vi.fn(),
     scoutPatterns: vi.fn(),
