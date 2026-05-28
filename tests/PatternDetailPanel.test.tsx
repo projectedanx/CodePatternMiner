@@ -1,23 +1,23 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { PatternDetailPanel } from '../components/PatternDetailPanel';
-import { CodePattern, PatternType } from '../types';
-import { fixerAgent } from '../services/intelligence/FixerAgent';
-import { fetchASTFromPhantomStorage } from '../services/phantomStorage';
+import { PatternDetailPanel } from '../src/components/PatternDetailPanel';
+import { CodePattern, PatternType } from '../src/types';
+import { fixerAgent } from '../src/services/intelligence/FixerAgent';
+import { fetchASTFromPhantomStorage } from '../src/services/phantomStorage';
 
-vi.mock('../services/phantomStorage', () => ({
+vi.mock('../src/services/phantomStorage', () => ({
   fetchASTFromPhantomStorage: vi.fn().mockResolvedValue({ name: 'root', type: 'Program', children: [] })
 }));
 
-import { ASTVisualizer } from '../components/ASTVisualizer';
+import { ASTVisualizer } from '../src/components/ASTVisualizer';
 
-vi.mock('../components/ASTVisualizer', () => ({
+vi.mock('../src/components/ASTVisualizer', () => ({
   ASTVisualizer: () => <div data-testid="mock-ast-visualizer" />
 }));
 
 
 
-vi.mock('../services/intelligence/FixerAgent', () => ({
+vi.mock('../src/services/intelligence/FixerAgent', () => ({
   fixerAgent: {
     proposeFix: vi.fn(),
   },

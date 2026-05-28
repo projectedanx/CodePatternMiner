@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { Layout } from '../components/Layout';
+import { Layout } from '../src/components/Layout';
 
 const mockNavItems = [
   { id: 'dashboard', label: 'Dashboard', icon: <span>D</span> },
