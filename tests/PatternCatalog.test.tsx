@@ -1,11 +1,11 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { PatternCatalog } from '../components/PatternCatalog';
-import { PatternType, CodePattern } from '../types';
+import { PatternCatalog } from '../src/components/PatternCatalog';
+import { PatternType, CodePattern } from '../src/types';
 
 // Mock the child components so we can test just the Catalog's behavior
-vi.mock('../components/PatternCard', () => ({
+vi.mock('../src/components/PatternCard', () => ({
   PatternCard: ({ pattern, onClick, onLinkClick }: any) => (
     <div data-testid={`pattern-card-${pattern.id}`} onClick={() => onClick(pattern)}>
       {pattern.name} - {pattern.type} - Confidence: {pattern.confidence}
@@ -14,7 +14,7 @@ vi.mock('../components/PatternCard', () => ({
   )
 }));
 
-vi.mock('../components/PatternDetailPanel', () => ({
+vi.mock('../src/components/PatternDetailPanel', () => ({
   PatternDetailPanel: ({ selected, onClose, onLinkClick }: any) => (
     selected ? (
       <div data-testid="detail-panel">

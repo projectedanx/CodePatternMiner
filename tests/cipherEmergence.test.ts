@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { CipherEmergenceEngine, SymbolicScar } from '../services/intelligence/cipherEmergence';
-import { ASTSummary } from '../types';
+import { CipherEmergenceEngine, SymbolicScar } from '../src/services/intelligence/cipherEmergence';
+import { ASTSummary } from '../src/types';
 
 describe('CipherEmergenceEngine - The Emergence Inversion Protocol', () => {
 

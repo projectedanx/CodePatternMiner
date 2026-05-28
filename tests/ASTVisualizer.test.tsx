@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ASTVisualizer } from '../components/ASTVisualizer';
-import { ASTNode } from '../types';
+import { ASTVisualizer } from '../src/components/ASTVisualizer';
+import { ASTNode } from '../src/types';
 import * as d3 from 'd3';
 
 // JSDOM SVG element doesn't have createSVGPoint, getScreenCTM, viewBox, width, height implementations that d3-zoom needs

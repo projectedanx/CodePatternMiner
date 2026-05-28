@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { PatternCard, PatternLinkRenderer } from '../components/PatternCard';
-import { PatternType, CodePattern } from '../types';
+import { PatternCard, PatternLinkRenderer } from '../src/components/PatternCard';
+import { PatternType, CodePattern } from '../src/types';
 import React from 'react';
 
 const mockPattern: CodePattern = {
