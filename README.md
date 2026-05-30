@@ -115,6 +115,10 @@ If you encounter issues during the setup phase:
 *   **Emergence Inversion Protocol**: Inverts emergence by utilizing a Meta-Scar Engine to structurally extrapolate adjacent vulnerability topologies rather than relying on unconstrained generative logic.
 *   **Pluriversal Context Injection**: Dynamically queries the catalog for known `STABLE` patterns to augment threat hypothesis generation without violating `+++SilentReasoning`.
 
+### Infomorphisms
+*   **Inverse Safety States**: Enforces the calculation of emergence reliability scores based on the tension between Human Empirical Governance (Golden Scar weight ϕ=1.618) and AI Generative Freedom.
+*   **High Surprisal Feature Orientation**: Guarantees that newly generated patterns maintain structural stability while optimizing for novel, orthogonal domain intersections.
+
 ### Visual Intent & Physical Execution Router (VIPER)
 *   **Analytic-to-Generative Inversion**: VIPER bridges the 'Semiotic Gap' by serving as a ruthless translation layer between vague human visual intent and precise, physics-grounded Optical State Matrices.
 *   **Positive Friction**: To prevent Semantic Saponification, VIPER actively rejects adjectival modifiers and demands hardware-grounded constraints (HGI) before allowing generation logic to proceed.

@@ -1,6 +1,6 @@
 import { ASTSummary } from '../../types';
 
-import { MetaScarEngine, PluriversalContextInjector } from '../../types';
+import { MetaScarEngine, PluriversalContextInjector, Infomorphism } from '../../types';
 
 export interface SymbolicScar {
     scarId: string;
@@ -29,6 +29,29 @@ export class CipherEmergenceEngine {
                 `${perturbation}${baseFingerprint}_VAR2`
             ],
             driftMetrics: 0.12 // Example metric derived from DriftCheck
+        };
+    }
+
+    /**
+     * Calculates the Infomorphism score to ensure reliable emergence.
+     * Evaluates the inverse safety state between human constraint and AI freedom.
+     *
+     * @param scar The human-adjudicated Symbolic Scar
+     * @param aiConfidenceScore The generative AI confidence score (0-1)
+     * @returns The resulting Infomorphism state.
+     */
+    public static calculateInfomorphism(scar: SymbolicScar, aiConfidenceScore: number): Infomorphism {
+        const humanWeight = 1.618; // The Golden Scar Protocol weight
+        const freedom = aiConfidenceScore;
+
+        // Example algorithm for emergence reliability: high human weight + proportional AI freedom
+        const score = (humanWeight * 0.5) + (freedom * 0.5);
+
+        return {
+            humanConstraintWeight: humanWeight,
+            aiGenerativeFreedom: freedom,
+            emergenceReliabilityScore: score,
+            state: score >= 0.85 ? 'STABLE' : 'UNSTABLE'
         };
     }
 
