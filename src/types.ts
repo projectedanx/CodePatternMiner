@@ -127,6 +127,17 @@ export interface CodePattern {
  * @property {string[]} logs - A chronological list of operational logs and events.
  * @property {number} patternsFound - The total number of reusable code patterns successfully identified so far.
  */
+/**
+ * Represents inverse safety states for reliable emergence, capturing the tension
+ * between human constraints and AI generative freedom.
+ */
+export interface Infomorphism {
+  humanConstraintWeight: number;
+  aiGenerativeFreedom: number;
+  emergenceReliabilityScore: number;
+  state: 'STABLE' | 'UNSTABLE';
+}
+
 export interface MiningSession {
   id: string;
   status: 'IDLE' | 'SCANNING' | 'ANALYZING' | 'COMPLETED' | 'FAILED';

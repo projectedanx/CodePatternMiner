@@ -127,6 +127,14 @@ analogical reasoning across orthogonal semantic fields with JSD < 0.20 post-bind
 
 ---
 
+### PAT-011 · Infomorphism
+**Type**: Structural Mapping — Epistemic | **AT Score**: 0.93
+**Definition**: Inverse safety states for reliable emergence. A structural mapping that formalizes the tension between human empirical governance and AI structural generation, ensuring high-surprisal feature orientation across domains.
+**Mechanism**: Balances human constraints (ϕ=1.618) against AI generative freedom to produce a stable emergence reliability score.
+**PDL Activators**: `+++SpatialBind(constraint="Infomorphism")`
+
+---
+
 ## SECTION II — PDL v1.0 DECORATOR REGISTRY (Cognitive Bytecode Functions)
 
 | Decorator | Layer | Primary Remediation | Key Parameter |

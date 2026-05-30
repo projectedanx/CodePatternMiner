@@ -43,4 +43,19 @@ describe('CipherEmergenceEngine - The Emergence Inversion Protocol', () => {
         const result = CipherEmergenceEngine.injectPluriversalContext(emptyAstSummary);
         expect(result.stableMatches.length).toBe(0);
     });
+
+    it('should calculate an infomorphism state for reliable emergence', () => {
+        const mockScar: SymbolicScar = {
+            scarId: 'SCAR-INFO-1',
+            vulnerabilityClass: 'CWE-119',
+            astTopologyFingerprint: 'FINGERPRINT_1'
+        };
+
+        const highConfidenceResult = CipherEmergenceEngine.calculateInfomorphism(mockScar, 0.95);
+        expect(highConfidenceResult.humanConstraintWeight).toBe(1.618);
+        expect(highConfidenceResult.state).toBe('STABLE');
+
+        const lowConfidenceResult = CipherEmergenceEngine.calculateInfomorphism(mockScar, 0.05);
+        expect(lowConfidenceResult.state).toBe('UNSTABLE');
+    });
 });
