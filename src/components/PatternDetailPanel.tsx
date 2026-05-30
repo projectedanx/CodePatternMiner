@@ -134,9 +134,19 @@ export const PatternDetailPanel: React.FC<PatternDetailPanelProps> = ({
          {/* Epistemic Escrow Section */}
          {selected.epistemicEscrow && selected.epistemicEscrow.status === 'PENDING' && (
             <section className="bg-surface-light p-4 rounded border-2 border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative">
-               <div className="flex items-center gap-2 mb-4 text-purple-400">
-                  <Cpu size={16} />
-                  <h3 className="text-sm font-bold font-mono uppercase tracking-wider">EPISTEMIC ESCROW: PARACONSISTENT TENSION</h3>
+               <div className="flex items-center justify-between mb-4 text-purple-400">
+                  <div className="flex items-center gap-2">
+                     <Cpu size={16} />
+                     <h3 className="text-sm font-bold font-mono uppercase tracking-wider">EPISTEMIC ESCROW: PARACONSISTENT TENSION</h3>
+                  </div>
+                  {selected.epistemicEscrow.infomorphismState && (
+                     <div className="flex flex-col items-end text-[10px] font-mono">
+                        <span className="text-neon-cyan">Infomorphism Score: {selected.epistemicEscrow.infomorphismState.emergenceReliabilityScore.toFixed(3)}</span>
+                        <span className={selected.epistemicEscrow.infomorphismState.state === 'STABLE' ? 'text-signal-green' : 'text-red-400'}>
+                           State: {selected.epistemicEscrow.infomorphismState.state}
+                        </span>
+                     </div>
+                  )}
                </div>
 
                <div className="grid grid-cols-2 gap-4 mb-4">
