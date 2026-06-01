@@ -90,7 +90,7 @@ describe('IntelligenceGateway - scoutPatterns', () => {
 
   it('should throw an error if the generation fails', async () => {
     const error = new Error('API Error');
-    mockGenerateContent.mockRejectedValueOnce(error);
+    mockGenerateContent.mockImplementationOnce(() => Promise.reject(error));
 
     const { intelligenceGateway } = await import('./IntelligenceGateway');
     await expect(intelligenceGateway.scoutPatterns('Test Topic')).rejects.toThrow('API Error');
@@ -128,7 +128,7 @@ describe('IntelligenceGateway - analyzeCodeBlock', () => {
 
   it('should throw an error if the generation fails', async () => {
     const error = new Error('API Error');
-    mockGenerateContent.mockRejectedValueOnce(error);
+    mockGenerateContent.mockImplementationOnce(() => Promise.reject(error));
 
     const { intelligenceGateway } = await import('./IntelligenceGateway');
     await expect(intelligenceGateway.analyzeCodeBlock('function test() {}')).rejects.toThrow('API Error');
@@ -233,7 +233,7 @@ describe('IntelligenceGateway - generateSearchQuery', () => {
 
   it('should throw an error if the generation fails', async () => {
     const error = new Error('API Error');
-    mockGenerateContent.mockRejectedValueOnce(error);
+    mockGenerateContent.mockImplementationOnce(() => Promise.reject(error));
 
     const { intelligenceGateway } = await import('./IntelligenceGateway');
     await expect(intelligenceGateway.generateSearchQuery('How to use React hooks')).rejects.toThrow('API Error');

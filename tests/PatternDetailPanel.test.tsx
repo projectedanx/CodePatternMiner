@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { PatternDetailPanel } from '../src/components/PatternDetailPanel';
 import { CodePattern, PatternType } from '../src/types';
 import { fixerAgent } from '../src/services/intelligence/FixerAgent';
@@ -50,7 +50,7 @@ const mockEscrowPattern: CodePattern = {
 };
 
 describe('PatternDetailPanel - Epistemic Escrow', () => {
-  it('renders TRIGGER SOVEREIGN FIXER button for CRITICAL patterns', () => {
+  it('renders TRIGGER SOVEREIGN FIXER button for CRITICAL patterns', async () => {
     render(
       <PatternDetailPanel
         selected={mockPattern}
@@ -60,10 +60,11 @@ describe('PatternDetailPanel - Epistemic Escrow', () => {
         onUpdatePattern={() => {}}
       />
     );
+    await screen.findByTestId('mock-ast-visualizer');
     expect(screen.getByText('TRIGGER SOVEREIGN FIXER')).toBeInTheDocument();
   });
 
-  it('does not render TRIGGER SOVEREIGN FIXER button for STABLE patterns', () => {
+  it('does not render TRIGGER SOVEREIGN FIXER button for STABLE patterns', async () => {
     render(
       <PatternDetailPanel
         selected={{ ...mockPattern, sovereignRating: 'STABLE' }}
@@ -73,10 +74,11 @@ describe('PatternDetailPanel - Epistemic Escrow', () => {
         onUpdatePattern={() => {}}
       />
     );
+    await screen.findByTestId('mock-ast-visualizer');
     expect(screen.queryByText('TRIGGER SOVEREIGN FIXER')).not.toBeInTheDocument();
   });
 
-  it('renders Superposition View when epistemicEscrow is present', () => {
+  it('renders Superposition View when epistemicEscrow is present', async () => {
     render(
       <PatternDetailPanel
         selected={mockEscrowPattern}
@@ -86,6 +88,7 @@ describe('PatternDetailPanel - Epistemic Escrow', () => {
         onUpdatePattern={() => {}}
       />
     );
+    await screen.findByTestId('mock-ast-visualizer');
 
     expect(screen.getByText('EPISTEMIC ESCROW: PARACONSISTENT TENSION')).toBeInTheDocument();
     expect(screen.getByText('function useAuth() { /* simplified logic */ }')).toBeInTheDocument();
@@ -105,8 +108,11 @@ describe('PatternDetailPanel - Epistemic Escrow', () => {
         onUpdatePattern={onUpdatePattern}
       />
     );
+    await screen.findByTestId('mock-ast-visualizer');
 
-    fireEvent.click(screen.getByText('TRIGGER SOVEREIGN FIXER'));
+    await act(async () => {
+      fireEvent.click(screen.getByText('TRIGGER SOVEREIGN FIXER'));
+    });
 
     await waitFor(() => {
       expect(fixerAgent.proposeFix).toHaveBeenCalledWith(mockPattern);
@@ -126,12 +132,17 @@ describe('PatternDetailPanel - Epistemic Escrow', () => {
         onUpdatePattern={onUpdatePattern}
       />
     );
+    await screen.findByTestId('mock-ast-visualizer');
 
     // Verify resolving UI
     const rationaleInput = screen.getByPlaceholderText('Enter empirical rationale for overriding AI...');
-    fireEvent.change(rationaleInput, { target: { value: 'Preserving edge case logic' } });
+    await act(async () => {
+      fireEvent.change(rationaleInput, { target: { value: 'Preserving edge case logic' } });
+    });
 
-    fireEvent.click(screen.getByText('RESOLVE (HUMAN DOMINANT Φ=1.618)'));
+    await act(async () => {
+      fireEvent.click(screen.getByText('RESOLVE (HUMAN DOMINANT Φ=1.618)'));
+    });
 
     expect(onUpdatePattern).toHaveBeenCalled();
     const updatedPattern = onUpdatePattern.mock.calls[0][0];

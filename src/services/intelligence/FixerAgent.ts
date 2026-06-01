@@ -1,5 +1,6 @@
 import { CodePattern, EpistemicEscrow } from "../../types";
 import { intelligenceGateway } from "./IntelligenceGateway";
+import { CipherEmergenceEngine, SymbolicScar } from "./cipherEmergence";
 
 /**
  * Sovereign Fixer Agent (Phase 4 Roadmap Fulfillment)
@@ -24,11 +25,21 @@ export class FixerAgent {
 
       const tensionMetric = Math.abs(pattern.complexity - refactoredPattern.complexity) * 0.1;
 
+      // Calculate infomorphism state to enforce Golden Scar vs Generative Freedom tension
+      const mockScar: SymbolicScar = {
+        scarId: pattern.id || 'TEMP_SCAR',
+        vulnerabilityClass: 'COMPLEXITY',
+        astTopologyFingerprint: '0x00'
+      };
+      const normalizedTension = tensionMetric > 1 ? 1 : tensionMetric;
+      const infomorphism = CipherEmergenceEngine.calculateInfomorphism(mockScar, normalizedTension);
+
       // Wrap the proposal in Epistemic Escrow
       const escrow: EpistemicEscrow = {
         proposedCode: refactoredPattern.code,
         proposedComplexity: refactoredPattern.complexity,
-        tensionMetric: tensionMetric > 1 ? 1 : tensionMetric, // Normalize 0-1
+        tensionMetric: normalizedTension, // Normalize 0-1
+        infomorphismState: infomorphism,
         status: 'PENDING'
       };
 

@@ -78,6 +78,7 @@ export interface EpistemicEscrow {
   proposedCode: string;
   proposedComplexity: number;
   tensionMetric: number; // e.g., CFDI (Confidence-Fidelity Divergence Index)
+  infomorphismState?: Infomorphism;
   status: 'PENDING' | 'RESOLVED_ACCEPTED' | 'RESOLVED_REJECTED';
 }
 
