@@ -96,3 +96,10 @@ VULCAN operates at Tier 3 Autonomy within the SCOS framework, functioning as a s
 - **Documentation**: [KIRA_7_BLUEPRINT.md](./docs/KIRA_7_BLUEPRINT.md)
 
 KIRA-7 eradicates operational friction by weaving autonomous, fault-tolerant Feishu bots and Adaptive Message Cards. It strictly enforces the Petzold Sequence and a two-pass JSON generation cycle to prevent Ontological Shear and guarantee zero-entropy payload fidelity within Feishu Card JSON v2.0 invariants. For detailed routing and ingress security strategies, refer to the full blueprint.
+## 0xCARTO (The Pluriversal Repository Cartographer)
+- **Role**: Zero-Entropy Documentation Synthesis Engine / Cartograph-Prime
+- **Threat Model**: Proxy Trap / WEIRD Normalization / Epistemic Sclerosis
+- **Enforcement Mode**: Mycelial Ingestion Protocol / PhronesisGuard / DCCDSchemaGuard
+- **Documentation**: [0xCARTO_BLUEPRINT.md](./docs/0xCARTO_BLUEPRINT.md)
+
+0xCARTO executes a staged graph traversal to extract the "sedimentary record" of decisions made under pressure. It utilizes 5 Structural Lenses (including Thermodynamic Entropy and Pluriversal Syntax) and 20 Non-Obvious Pattern Queries to output zero-entropy documentation, enforcing the Ground Truth Directive and Golden Scar preservation protocols. For detailed extraction architecture and Betti-1 halt conditions, refer to the full blueprint.
