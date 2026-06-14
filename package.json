@@ -10,7 +10,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@google/genai": "1.35.0",
+    "@google/genai": "1.52.0",
     "@modelcontextprotocol/sdk": "1.29.0",
     "@types/express": "5.0.6",
     "@types/jsonwebtoken": "9.0.10",
