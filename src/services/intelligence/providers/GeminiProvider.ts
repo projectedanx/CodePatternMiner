@@ -3,9 +3,8 @@ import { CodePattern, PatternType, ASTNode } from "../../../types";
 import { saveASTToPhantomStorage, calculateASTSummary } from "../../phantomStorage";
 import { IntelligenceProvider } from "../IntelligenceProvider";
 
-const API_KEY = process.env.API_KEY || '';
-
 const getClient = () => {
+  const API_KEY = process.env.API_KEY || '';
   if (!API_KEY) {
     throw new Error("API Key not found in environment");
   }

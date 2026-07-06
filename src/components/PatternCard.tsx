@@ -118,7 +118,7 @@ export const PatternCard: React.FC<PatternCardProps> = ({ pattern, onClick, know
            <button
              onClick={(e) => {
                e.stopPropagation();
-               // TODO: Implement usage docs viewer callback
+               onClick(pattern);
              }}
              className="text-tertiary hover:text-neon-cyan transition-colors p-1"
              title="View Protocol Manual"
